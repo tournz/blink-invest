@@ -1,0 +1,46 @@
+<div class="card-project">
+  <div class="row upper-section" >
+    <div class="col-6 name-section" style="background: darkgray">
+      <p class="card-adress-text"><%= @project.location %></p>
+      <h3 class="card-title-project"><%= @project.name %></h3>
+    </div>
+    <div class="col-6 card-project-image" style="background: lightgray">
+      <h1>@project.photo.key</h1>
+    </div>
+  </div>
+
+  <div class="row middle-section" >
+    <div class="col-6 fin-info-section" style="background: lightgray">
+      <div class="fin-stat">
+        <p class="maturity_date"><%= @project.maturity_date %></p>
+        <p>maturity_date</p>
+      </div>
+      <div class="fin-stat">
+        <p class="target_net_irr"><%= @project.target_net_irr %></p>
+        <p>target_net_irr</p>
+      </div>
+      <div class="fin-stat">
+        <p class="net_equity_multiple"><%= @project.net_equity_multiple %></p>
+        <p>net_equity_multiple</p>
+      </div>
+      <div class="fin-stat">
+        <p class="ltv_ratio"><%= @project.ltv_ratio %></p>
+        <p>ltv_ratio</p>
+      </div>
+    </div>
+    <div class="col-6 map-section" style="background: darkgray">
+      <h1>MAP HERE</h1>
+    </div>
+  </div>
+
+  <div class="row bottom-section">
+    <div class="col-6">
+      <h2>Button</h2>
+    </div>
+    <div class="col-6">
+
+      <h2><%= @project.crop %></h2>
+    </div>
+  </div>
+
+</div>
