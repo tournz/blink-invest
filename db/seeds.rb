@@ -13,7 +13,7 @@ Project.create!(name: "Fawn Creek Pistachio Orchard", amount: rand(5..150)*10000
             ive to large growers and investors.",
             start_date: Faker::Date.between(Date.parse('15/03/2021'), Date.parse('31/12/2021')),
             maturity_date: Faker::Date.between(Date.parse('15/03/2026'), Date.parse('31/12/2036')),
-            target_net_irr: 9.5%, net_equity_multiple: 2.1, ltv_ratio: 40%)
+            ltv_ratio: 0.4)
 
 
 Project.create!(name: "Rinehart Farm", amount: rand(5..150)*100000, funded: false,
@@ -26,7 +26,7 @@ Project.create!(name: "Rinehart Farm", amount: rand(5..150)*100000, funded: fals
             to get the deal at a 7%+ discount to market.",
             start_date: Faker::Date.between(Date.parse('15/03/2021'), Date.parse('31/12/2021')),
             maturity_date: Faker::Date.between(Date.parse('15/03/2026'), Date.parse('31/12/2036')),
-            target_net_irr: 10.2%, net_equity_multiple: 2.2, ltv_ratio: 35%)
+            ltv_ratio: 0)
 
 
 Project.create!(name: "Galaxy Organic Apple Orchard", amount: rand(5..150)*100000, funded: false,
@@ -40,10 +40,10 @@ Project.create!(name: "Galaxy Organic Apple Orchard", amount: rand(5..150)*10000
             in the area, Stemilt Growers, and are finalizing an agreement with them. This acquisition \
             is a 10-year hold with a target net IRR of 15.0% and a target net average cash yield of \
             19.6%. At exit, this property will be a turnkey operation attractive to large growers \
-            and investors. ",
+            and investors.",
             start_date: Faker::Date.between(Date.parse('15/03/2021'), Date.parse('31/12/2021')),
             maturity_date: Faker::Date.between(Date.parse('15/03/2026'), Date.parse('31/12/2036')),
-            target_net_irr: , net_equity_multiple: , ltv_ratio: )
+            ltv_ratio: 0.39)
 
 
 Project.create!(name: "Interstate Hazelnut Orchard", amount: rand(5..150)*100000, funded: false,
@@ -56,7 +56,7 @@ Project.create!(name: "Interstate Hazelnut Orchard", amount: rand(5..150)*100000
             to large growers and institutional investors.",
             start_date: Faker::Date.between(Date.parse('15/03/2021'), Date.parse('31/12/2021')),
             maturity_date: Faker::Date.between(Date.parse('15/03/2026'), Date.parse('31/12/2036')),
-            target_net_irr: , net_equity_multiple: , ltv_ratio: )
+            ltv_ratio: 0.35)
 
 
 Project.create!(name: "Garcia Mandarin Grove", amount: rand(5..150)*100000, funded: false,
@@ -67,10 +67,21 @@ Project.create!(name: "Garcia Mandarin Grove", amount: rand(5..150)*100000, fund
             (“tango” variety). Green Leaf Farms would develop and manage the property. ",
             start_date: Faker::Date.between(Date.parse('15/03/2021'), Date.parse('31/12/2021')),
             maturity_date: Faker::Date.between(Date.parse('15/03/2026'), Date.parse('31/12/2036')),
-            target_net_irr: , net_equity_multiple: , ltv_ratio: )
+            ltv_ratio: 0.36)
 
+# Project.all.each |project| do
+#  10.times do
+#    flow = CashYield.create(date: date, amount: amount)
+#    project.cash_yield = flow
+#  end
+# end
 
-# Project.create!(name: "Yuba Almond Orchard", amount: rand(5..150)*100000, funded: false,
+# Create users
+# Create subscriptions
+# Add pictures for the projects in the assets folder
+# Link the investment highlights to a project
+
+# Project.create!(name: "Yuba Almond Orchard", amount: rand(5..150)*100000, funded: false,)
 #            location: "Yuba County, CA", latitude: , longitude: , crop: "Almonds",
 #            description: , start_date: Faker::Date.between(Date.parse('15/03/2021'), Date.parse('31/12/2021')),
 #            maturity_date: Faker::Date.between(Date.parse('15/03/2026'), Date.parse('31/12/2036')))
@@ -137,20 +148,4 @@ Project.create!(name: "Garcia Mandarin Grove", amount: rand(5..150)*100000, fund
 #            location: "Merced County, CA", latitude: , longitude: , crop: "Almonds",
 #            description: , start_date: Faker::Date.between(Date.parse('15/03/2021'), Date.parse('31/12/2021')),
 #            maturity_date: Faker::Date.between(Date.parse('15/03/2026'), Date.parse('31/12/2036')))
-
-
-t.string "name"
-t.float "amount"
-t.boolean "funded"
-t.integer "surface"
-t.string "location"
-t.float "latitude"
-t.float "longitude"
-t.string "crop"
-t.text "description"
-t.date "start_date"
-t.date "maturity_date"
-t.float "target_net_irr"
-t.float "net_equity_multiple"
-t.float "ltv_ratio"
 

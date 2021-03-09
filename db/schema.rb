@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_113532) do
+ActiveRecord::Schema.define(version: 2021_03_09_152210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 2021_03_09_113532) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_favorites_on_project_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "investment_highlights", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.bigint "project_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_investment_highlights_on_project_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -73,11 +82,11 @@ ActiveRecord::Schema.define(version: 2021_03_09_113532) do
     t.text "description"
     t.date "start_date"
     t.date "maturity_date"
-    t.float "target_net_irr"
-    t.float "net_equity_multiple"
     t.float "ltv_ratio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "management_fee"
+    t.float "transaction_fee"
   end
 
   create_table "responses", force: :cascade do |t|
