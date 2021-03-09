@@ -15,5 +15,4 @@ Rails.application.routes.draw do
   #resources :polls, only: [] do
   #  resources :responses, only: :create
   # end
-
 end
