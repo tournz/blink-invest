@@ -1,0 +1,18 @@
+=> [32m#<Project:0x000055e877fc9378[0m
+ id: [1;34m1[0m,
+ name: [31m[1;31m"[0m[31mTest project 01[1;31m"[0m[31m[0m,
+ amount: [1;35m100000.0[0m,
+ funded: [1;36mfalse[0m,
+ surface: [1;34m563214[0m,
+ location: [31m[1;31m"[0m[31mIstanbul[1;31m"[0m[31m[0m,
+ latitude: [1;35m40.0[0m,
+ longitude: [1;35m38.0[0m,
+ crop: [31m[1;31m"[0m[31mcorn[1;31m"[0m[31m[0m,
+ description: [31m[1;31m"[0m[31mVery first project in Istanbul[1;31m"[0m[31m[0m,
+ start_date: [1;36mnil[0m,
+ maturity_date: [1;36mnil[0m,
+ target_net_irr: [1;36mnil[0m,
+ net_equity_multiple: [1;36mnil[0m,
+ ltv_ratio: [1;36mnil[0m,
+ created_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m13[0m:[1;34m00[0m:[1;34m43[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m,
+ updated_at: [1;34;4mTue[0m, [1;34m09[0m [1;34;4mMar[0m [1;34m2021[0m [1;34m13[0m:[1;34m00[0m:[1;34m43[0m [1;34;4mUTC[0m [1;34m+00[0m:[1;34m00[0m[32m>[0m
