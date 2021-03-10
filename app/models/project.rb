@@ -5,6 +5,10 @@ class Project < ApplicationRecord
   has_many :messages
   after_create :calc_surface
 
+  def net_equity_multiple
+    (cash_yields.sum(&:value) / amount).round(1)
+  end
+
   private
 
   def calc_surface
