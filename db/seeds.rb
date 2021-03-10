@@ -1,9 +1,10 @@
 require 'date'
 puts "Clearing the database of all existing elements"
 CashYield.destroy_all
+Subscription.destroy_all
 Project.destroy_all
 User.destroy_all
-Subscription.destroy_all
+
 
 
 Project.create!(name: "Fawn Creek Pistachio Orchard", amount: rand(5..150)*100000, funded: false,
@@ -49,21 +50,21 @@ Project.all.each do |project|
   date2 = project.maturity_date
   date1 = project.start_date
   counter = (date2.year - date1.year) * 12 + date2.month - date1.month - (date2.day >= date1.day ? 0 : 1)
-  for i in (0...counter) do
-    CashYield.create(date: (date1 + i.month).end_of_month, value: project.amount * rand(0.001..0.005), project: project)
+  for i in (0...counter + 1) do
+    CashYield.create(date: (date1 + i.month).end_of_month, value: (project.amount * rand(0.001..0.005)).round(2), project: project)
   end
-  CashYield.create(date: project.maturity_date, value: project.amount * rand(1.05..1.2), project: project)
+  CashYield.create(date: project.maturity_date, value: (project.amount * rand(1.05..1.2)).round(2), project: project)
 end
 
 
-User.create(name: 'Boris', email: boris@blink.com, password: 'password')
-User.create(name: 'Shahabal', email: shahabal@blink.com, password: 'password')
-User.create(name: 'Zach', email: zach@blink.com, password: 'password')
-User.create(name: 'Sy', email: sy@blink.com, password: 'password')
+User.create(email: 'boris@blink.com', password: 'password')
+User.create(email: 'shahabal@blink.com', password: 'password')
+User.create(email: 'zach@blink.com', password: 'password')
+User.create(email: 'sy@blink.com', password: 'password')
 
 Project.all.each do |project|
   User.all.each do |user|
-    Subscription.create(project: project, user: user, amount: project.amount * rand(0.05..0.25))
+    Subscription.create(project: project, user: user, amount: (project.amount * rand(0.05..0.25)).round(2))
   end
 end
 
