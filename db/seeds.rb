@@ -73,16 +73,16 @@ Project.all.each do |project|
 end
 
 file = URI.open('https://avatars.githubusercontent.com/u/62432059?s=460&u=d90bafa134b175d53f7904cfc6e5322a4039b6a6&v=4')
-user = User.create(email: 'boris@blink.com', password: 'password')
+user = User.create(name: 'Boris Nikiforov', email: 'boris@blink.com', password: 'password')
 user.photo.attach(io: file, filename: "#{user.email}-photo.png", content_type: 'image/png')
 file = URI.open('https://avatars.githubusercontent.com/u/74435802?s=460&u=d0d9922fe1e27a0aa4904ed60bad5427bce7cd9e&v=4')
-user = User.create(email: 'shahabal@blink.com', password: 'password')
+user = User.create(name: 'Shahabal Shahzad', email: 'shahabal@blink.com', password: 'password')
 user.photo.attach(io: file, filename: "#{user.email}-photo.png", content_type: 'image/png')
 file = URI.open('https://avatars.githubusercontent.com/u/72731566?s=400&u=a25ad0a4bb38e96526a9b4043f015f594399d33e&v=4')
-user = User.create(email: 'zach@blink.com', password: 'password')
+user = User.create(name: 'Zacharie Tournant', email: 'zach@blink.com', password: 'password')
 user.photo.attach(io: file, filename: "#{user.email}-photo.png", content_type: 'image/png')
 file = URI.open('https://avatars.githubusercontent.com/u/6656014?s=460&u=40ba8df8a2f5a87e990034439a8118dde60e7053&v=4')
-user = User.create(email: 'sy@blink.com', password: 'password')
+user = User.create(name: 'Sy Rashid', email: 'sy@blink.com', password: 'password')
 user.photo.attach(io: file, filename: "#{user.email}-photo.png", content_type: 'image/png')
 
 Project.all.each do |project|
