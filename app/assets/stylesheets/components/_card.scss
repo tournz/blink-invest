@@ -32,6 +32,13 @@ $borders: 1px solid rgba(218, 218, 218, 0.527);
   .fin-stat {
     border-bottom: $borders;
   }
+  .card-map-image {
+
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
   .button-style {
     color: white;
     background-color:#DAB483;
