@@ -1,0 +1,2 @@
+class InvestmentHighlight < ApplicationRecord
+end
