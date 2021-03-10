@@ -69,8 +69,6 @@ end
 
 puts "Seeding was completed. You now have #{Project.count} projects, #{CashYield.count} cash flows, #{User.count} users, #{Subscription.count} subscriptions"
 
-# Create users
-# Create subscriptions
 # Add pictures for the projects in the assets folder
 # Link the investment highlights to a project
 
