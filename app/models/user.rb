@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :polls
   has_many :responses
   has_many :projects, through: :subscriptions
+  has_one_attached :photo
 end
