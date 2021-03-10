@@ -1,0 +1,39 @@
+$borders: 1px solid rgba(218, 218, 218, 0.527);
+
+.card-project {
+  border-radius: 5px;
+  background-color: rgb(250, 247, 242);
+  box-shadow: 5px 5px 30px rgba($color: #000000, $alpha: 0.15);
+  
+  .card-title-project {
+    font-size: 20px;
+  }
+  .card-small-text {
+    font-weight: 300;
+  }
+  .numbers {
+    font-weight: 300;
+    font-size: 20px;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 0 5px 0 0;
+  }
+  
+  .fin-info-section {
+    border-right: $borders;
+  }
+  .name-section {
+    border-bottom: $borders;
+  }
+  .fin-stat {
+    border-bottom: $borders;
+  }
+  .button-style {
+    color: white;
+    background-color:#DAB483;
+  }
+}

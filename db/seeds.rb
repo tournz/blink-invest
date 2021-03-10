@@ -56,10 +56,10 @@ Project.all.each do |project|
 end
 
 
-User.create(name: 'Boris', email: boris@blink.com, password: 'password')
-User.create(name: 'Shahabal', email: shahabal@blink.com, password: 'password')
-User.create(name: 'Zach', email: zach@blink.com, password: 'password')
-User.create(name: 'Sy', email: sy@blink.com, password: 'password')
+User.create(name: 'Boris', email: "boris@blink.com", password: 'password')
+User.create(name: 'Shahabal', email: "shahabal@blink.com", password: 'password')
+User.create(name: 'Zach', email: "zach@blink.com", password: 'password')
+User.create(name: 'Sy', email: "sy@blink.com", password: 'password')
 
 Project.all.each do |project|
   User.all.each do |user|
