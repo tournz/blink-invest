@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   #  end
   #  resources :favorites, only: [:create, :destroy]
   end
-  resources :portfolio, only: :show
+  resource :portfolio, only: :show
   #resources :polls, only: [] do
   #  resources :responses, only: :create
   # end
