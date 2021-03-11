@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  
+
   def index
     @projects = Project.all
     @markers = @projects.geocoded.map do |project|
@@ -13,6 +13,4 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
   end
-  
-  
 end
