@@ -1,4 +1,4 @@
-      <%= image_tag('pistacho trees.jpg', class:"show-banner") %>
+<%= cl_image_tag @project.banner_picture.key, crop: :fill, class:"show-banner" %>
 <div class="container card-project">
   <h3 class="card-title-project pt-5"><%= @project.location %></h3>
   <h1 class="card-title-project"><%= @project.name %></h1>
@@ -10,7 +10,7 @@
       <p class="card-small-text">Target Net IRR</p>
     </div>
     <div class="fin-stat col">
-      <p class="numbers"><%= @project.net_cash_yield * 100 %>%</p>
+      <p class="numbers"><%= (@project.net_cash_yield * 100).round(2) %>%</p>
       <p class="card-small-text">Net Cash Yield</p>
     </div>
     <div class="fin-stat col">
@@ -35,9 +35,9 @@
       <%= render 'projects/map-card-index', locales: { project: @project } %>
     <%# END of MAP %>
   </div>
-</div> 
+</div>
 
- 
+
       <div class="container mt-3">
       </div>
     </div>

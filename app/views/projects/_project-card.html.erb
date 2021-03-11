@@ -5,7 +5,7 @@
       <h3 class="card-title-project"><%= @project.name %></h3>
     </div>
     <div class="col-6 ">
-      <%= image_tag('pistacho trees.jpg', class:"card-image") %>
+      <%= cl_image_tag @project.banner_picture.key, height: 95, width: 250, crop: :fill %>
     </div>
   </div>
 
@@ -17,7 +17,7 @@
             <p class="card-small-text">Target Net IRR</p>
           </div>
           <div class="fin-stat col-6">
-            <p class="numbers"><%= @project.net_cash_yield * 100 %>%</p>
+            <p class="numbers"><%= (@project.net_cash_yield * 100).round(2) %>%</p>
             <p class="card-small-text">Net Cash Yield</p>
           </div>
         </div>
