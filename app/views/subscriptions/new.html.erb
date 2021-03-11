@@ -9,7 +9,7 @@
       <div class="user-box"><%= cl_image_tag user.photo.key, height: 50, width: 50, crop: :fill %> <%= user.name %>:</div>
       <%= number_to_currency(user_project_amount) %>
       <% user_percentage = 100 * user_project_amount / @project.amount %>
-      <% user_percentage.round(1) %>%
+      <% user_percentage.round(1) %>
     </div>
   </div>
 <% end %>
