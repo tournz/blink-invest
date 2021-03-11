@@ -17,7 +17,7 @@
             <p class="card-small-text">Target Net IRR</p>
           </div>
           <div class="fin-stat col-6">
-            <p class="numbers"><%= @project.net_cash_yield * 100%>%</p>
+            <p class="numbers"><%= @project.net_cash_yield * 100 %>%</p>
             <p class="card-small-text">Net Cash Yield</p>
           </div>
         </div>
@@ -50,7 +50,7 @@
 
   <div class="row bottom-section">
     <div class="col-6">
-      <h2 class="btn button-style btn-block rounded-0">Button</h2>
+      <%= link_to "See details", @project, class:"btn button-style btn-block rounded-0" %>
     </div>
     <div class="col-6 m-auto">
 

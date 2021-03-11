@@ -12,6 +12,7 @@ $borders: 1px solid rgba(218, 218, 218, 0.527);
     font-size: 14px;
     font-weight: 300;
     line-height: 15px;
+    text-shadow: 0px 0px 0.5px rgb(59, 59, 59);
   }
   .numbers {
     font-weight: 300;
@@ -51,6 +52,7 @@ $borders: 1px solid rgba(218, 218, 218, 0.527);
   }
 
   .button-style {
+    text-decoration: none;
     color: white;
     background-color:#DAB483;
   }

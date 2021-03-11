@@ -11,8 +11,4 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;500&display=swap');
-.body {
-  font-family: 'Montserrat', sans-serif;
-}
+@import "pages/show-project";
