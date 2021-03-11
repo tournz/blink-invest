@@ -6,14 +6,17 @@ $borders: 1px solid rgba(218, 218, 218, 0.527);
   box-shadow: 5px 5px 30px rgba($color: #000000, $alpha: 0.15);
   
   .card-title-project {
-    font-size: 20px;
+    font-size: 18px;
   }
   .card-small-text {
+    font-size: 14px;
     font-weight: 300;
+    line-height: 15px;
   }
   .numbers {
     font-weight: 300;
     font-size: 20px;
+    line-height: 15px;
   }
   
   .card-image {
@@ -32,11 +35,19 @@ $borders: 1px solid rgba(218, 218, 218, 0.527);
   .fin-stat {
     border-bottom: $borders;
   }
-  .card-map-image {
 
+  .card-map-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
+  }
+
+  .middle-section {
+    // height: 17rem;
+  }
+
+  .progress-bar {
+    background-color: rgb(143, 216, 140);
   }
 
   .button-style {
