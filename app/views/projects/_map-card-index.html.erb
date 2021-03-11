@@ -1,0 +1,6 @@
+<% @project.longitude %>
+<% @project.latitude %>
+<% base_url = "https://api.mapbox.com/styles/v1/nikiforov5000/ckm3slb1razov17s5rzjbavhc/static/pin-s+dab483(#{@project.longitude},#{@project.latitude})/#{@project.longitude},#{@project.latitude},3/300x500?access_token=#{ENV['MAPBOX_API_KEY']}" %>
+<img src="<%= base_url %>"
+  class="card-map-image"
+  alt="<%= @project.location %>">

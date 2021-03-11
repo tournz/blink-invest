@@ -7,6 +7,9 @@ class Project < ApplicationRecord
   has_one_attached :banner_picture
   after_create :calc_surface
 
+  geocoded_by :location
+  after_validation :geocode, if: :will_save_change_to_address?
+
   def net_equity_multiple
     (cash_yields.sum(&:value) / amount).round(1)
   end

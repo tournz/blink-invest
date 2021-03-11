@@ -43,8 +43,9 @@
     </div>
     <div class="col-6 map-section">
       <p class="text-center card-small-text"><%= @project.location %></p>
-      <h1>MAP HERE</h1>
-      
+      <%# MAP %>
+        <%= render 'projects/map-card-index', locales: { project: @project } %>
+      <%# END of MAP %>
     </div>
   </div>
 
