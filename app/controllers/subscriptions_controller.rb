@@ -13,7 +13,7 @@ class SubscriptionsController < ApplicationController
     @subscription.project = @project
     @subscription.user = @user
     if @subscription.save
-      redirect_to project_path(@project)
+      redirect_to portfolio_path
     else
       render :new
     end
