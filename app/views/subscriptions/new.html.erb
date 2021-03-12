@@ -19,27 +19,22 @@
 <div class="progress">
   <div class="progress-bar" role="progressbar" style="width: <%= commited %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<%# STACKED PROGRESS BAR%>
+
+<%# STACKED PROGRESS BAR START %>
+<p> </p>
 <div class="progress">
-  <% @users.each do |user| %>
+  <% @users.each_with_index do |user, i| %>
     <% user_project_amount = user.subscriptions.where(project: @project).sum(&:amount) %>
-    <div class="row">
-      <div class="user-row">
-        <div class="user-box">
-          <% user_percentage = 100 * user_project_amount / @project.amount %>
-          <% user_percentage = user_percentage.round(1) %>
-
-            <div class="progress-bar" role="progressbar" style="<%user_percentage%>" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"><%= user.name %></div>
-           
-
-        </div>
-      </div>
-    </div>
+    <% user_percentage = 100 * user_project_amount / @project.amount %>
+    <% user_percentage = user_percentage.round(0) %>
+    <p> </p>
+    <% first_name = user.name.split[0] %>
+    <% colors = %w[secondary primary success warning info dark]%>
+    <div class="progress-bar bg-<%= colors[i] %>" role="progressbar" style="width: <%= user_percentage %>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><%= first_name %>: <%= user_percentage %>%</div>
   <% end %>
 </div>
 
-
-<%# STACKED PROGRESS BAR END%>
+<%# STACKED PROGRESS BAR END %>
 
   <%= simple_form_for [@project, @subscription] do |f| %>
       <%= f.input :amount, :label => "Choose the amount (maximum #{number_to_currency(@max_amount)}):" %>
