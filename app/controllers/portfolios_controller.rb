@@ -83,5 +83,5 @@ class PortfoliosController < ApplicationController
       array << project.management_fee
     end
     array
-
   end
+end
