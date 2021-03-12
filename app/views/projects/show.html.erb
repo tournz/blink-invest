@@ -6,7 +6,7 @@
 
   <div class="row pt-5" >
     <div class="fin-stat col">
-      <p class="numbers">9.5%</p>
+      <p class="numbers"><%= (@project.target_net_irr * 100).round(2) %>%</p>
       <p class="card-small-text">Target Net IRR</p>
     </div>
     <div class="fin-stat col">
@@ -28,7 +28,11 @@
     <div class="progress-bar" role="progressbar" style="width: <%= @project.percentage_subscribed * 100 %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <p></p>
-  <%= link_to "Subscribe", new_project_subscription_path(@project), class:"btn button-style btn-block rounded-0" %>
+  <% if @project.funded == true %>
+    <div class="btn button-style btn-block rounded-0">The project was already subscribed</div>
+  <% else %>
+    <%= link_to "Subscribe", new_project_subscription_path(@project), class:"btn button-style btn-block rounded-0" %>
+  <% end %>
   <div class="col-6 map-section">
     <p class="text-center card-small-text"><%= @project.location %></p>
     <%# MAP %>

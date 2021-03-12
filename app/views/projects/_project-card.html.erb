@@ -13,7 +13,7 @@
     <div class="col-6 fin-info-section">
         <div class="row m-auto">
           <div class="fin-stat col-6">
-            <p class="numbers">9.5%</p>
+            <p class="numbers"><%= (@project.target_net_irr * 100).round(2) %>%</p>
             <p class="card-small-text">Target Net IRR</p>
           </div>
           <div class="fin-stat col-6">
