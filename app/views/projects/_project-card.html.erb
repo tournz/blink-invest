@@ -5,7 +5,7 @@
       <h3 class="card-title-project"><%= @project.name %></h3>
     </div>
     <div class="col-6 ">
-      <%= cl_image_tag @project.banner_picture.key, height: 95, width: 250, crop: :fill %>
+      <%= cl_image_tag @project.banner_picture.key, height: 95, width: 250, crop: :fill, class:"card-image" %>
     </div>
   </div>
 
