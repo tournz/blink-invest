@@ -14,4 +14,4 @@ class PortfolioController < ApplicationController
       }
     end
   end
-end
+end 
