@@ -46,8 +46,8 @@
       <td></td>
       <td></td>
       <td><%= @projects.sum(&:surface) %></td>
-      <td><%= (100 * @projects_subscriptions_amount / @projects.sum(&:amount)).round(2) %>%</td>
-      <td><%= number_to_currency(@projects_subscriptions_amount)%></td>
+      <td><%= (100 * @projects_subscriptions.sum(&:amount) / @projects.sum(&:amount)).round(2) %>%</td>
+      <td><%= number_to_currency(@projects_subscriptions.sum(&:amount))%></td>
       <td><%= number_to_currency(@projects.sum(&:amount)) %></td>
       <td></td>
       <td></td>
@@ -106,8 +106,8 @@
       <td></td>
       <td></td>
       <td><%= @confirmed_projects.sum(&:surface) %></td>
-      <td><%= (100 * @confirmed_projects_subscriptions_amount / @confirmed_projects.sum(&:amount)).round(2) %>%</td>
-      <td><%= number_to_currency(@confirmed_projects_subscriptions_amount)%></td>
+      <td><%= (100 * @confirmed_projects_subscriptions.sum(&:amount) / @confirmed_projects.sum(&:amount)).round(2) %>%</td>
+      <td><%= number_to_currency(@confirmed_projects_subscriptions.sum(&:amount))%></td>
       <td><%= number_to_currency(@confirmed_projects.sum(&:amount)) %></td>
       <td></td>
       <td></td>
