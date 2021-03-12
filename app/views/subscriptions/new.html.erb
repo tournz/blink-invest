@@ -19,6 +19,28 @@
 <div class="progress">
   <div class="progress-bar" role="progressbar" style="width: <%= commited %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+<%# STACKED PROGRESS BAR%>
+<div class="progress">
+  <% @users.each do |user| %>
+    <% user_project_amount = user.subscriptions.where(project: @project).sum(&:amount) %>
+    <div class="row">
+      <div class="user-row">
+        <div class="user-box">
+          <% user_percentage = 100 * user_project_amount / @project.amount %>
+          <% user_percentage = user_percentage.round(1) %>
+
+            <div class="progress-bar" role="progressbar" style="<%user_percentage%>" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"><%= user.name %></div>
+           
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<%# STACKED PROGRESS BAR END%>
+
   <%= simple_form_for [@project, @subscription] do |f| %>
       <%= f.input :amount, :label => "Choose the amount (maximum #{number_to_currency(@max_amount)}):" %>
       <%= f.button :submit %>
