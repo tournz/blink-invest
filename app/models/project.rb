@@ -7,7 +7,6 @@ class Project < ApplicationRecord
   has_many :investment_highlights
   has_one_attached :banner_picture
   after_create :calc_surface
-  after_update :update_funded
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
@@ -60,10 +59,6 @@ class Project < ApplicationRecord
   end
 
   private
-
-  def update_funded
-    update funded: true if percentage_subscribed == 1
-  end
 
   def calc_surface
     update surface: amount / (rand(0.8..1.2) * 10_000).round
