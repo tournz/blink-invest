@@ -1,1 +1,34 @@
-// Specific CSS for your home-page
+.home-page {
+  height: 100vh;
+  background: url('fields_banner_for_home-CZ6CF44');
+  background-size: contain;
+}
+
+.home-banner {
+  box-shadow: 5px 5px 30px rgba($color: #000000, $alpha: 0.15);
+  border-radius: 5px;
+  padding: 50px 100px;
+  position: absolute;
+  display: flex;
+  width: 75vw;
+  top: 20vh;
+  height: 30vh;
+  background-color: $card-beige;
+  .home-header {
+}
+}
+.home-title-project {
+  font-size: 18px;
+}
+.header-small-text {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 15px;
+  text-shadow: 0px 0px 0.5px rgb(59, 59, 59);
+}
+
+.button-style {
+  text-decoration: none;
+  color: white;
+  background-color:#DAB483;
+}
