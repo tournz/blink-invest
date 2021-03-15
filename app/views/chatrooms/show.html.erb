@@ -9,8 +9,12 @@
           <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
         </i>
         <p><%= message.content %></p>
-        <% if message.poll.exists? %>
-          <p><%= link_to "Participate", poll_path(message.poll) %></p>
+        <% if message.poll_id %>
+          <% if message.poll.user == current_user %>
+            <p><%= link_to "Edit Or Participate to the poll", poll_path(message.poll) %></p>
+          <% else %>
+            <p><%= link_to "Participate", poll_path(message.poll) %></p>
+          <% end %>
         <% end %>
       </div>
     <% end %>

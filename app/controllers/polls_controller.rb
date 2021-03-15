@@ -19,8 +19,10 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id])
+    @poll_option = PollOption.new(poll: @poll)
     @poll_options = @poll.poll_options
     @chatroom = @poll.chatroom
+    @response = Response.new
   end
 
   private

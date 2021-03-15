@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     resources :polls, only: [:new, :create]
   end
   resources :polls, only: :show do
-    resources :poll_options, only: [:new, :create]
+    resources :poll_options, only: :create
   end
 end

@@ -3,6 +3,16 @@
     <% @poll.poll_options.each do |poll_option| %>
       <p><%= poll_option.content %> </p>
     <% end %>
-  <p><%= link_to "Add another answer to the poll", new_poll_poll_option_path(@poll) %></p>
-  <p><%= link_to "Finish creating the poll", chatroom_path(@chatroom) %></p>
+  <%= simple_form_for [@poll, @poll_option, @response] do |f| %>
+    <%= f.input :content, label: false, placeholder: "Answer chosen" %>
+    <%= f.button :submit %>
+  <% end %>
+
+  <% if @poll.user == current_user %>
+    <%= simple_form_for [@poll, @poll_option] do |f| %>
+      <%= f.input :content, label: false, placeholder: "Answer option" %>
+      <%= f.button :submit %>
+    <% end %>
+    <p><%= link_to "Finish creating the poll", chatroom_path(@chatroom) %></p>
+  <% end %>
 </div>
