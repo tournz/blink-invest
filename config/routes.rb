@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   end
   resources :polls, only: :show do
     resources :poll_options, only: :create
+    resources :responses, only: :create
   end
 end
