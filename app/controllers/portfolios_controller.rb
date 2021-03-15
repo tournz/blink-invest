@@ -26,12 +26,14 @@ class PortfoliosController < ApplicationController
       data = []
       name = subscription.project.name
       subscription.project.cash_yields.each do |cash_yield|
-        if params[:search][:start_date].empty? || params[:search][:end_date].empty?
-          data << [cash_yield.date, cash_yield.value]
-        else
-          start_date = params[:search][:start_date].to_date
-          end_date = params[:search][:end_date].to_date
-          data << [cash_yield.date, cash_yield.value] if cash_yield.date > start_date && cash_yield.date < end_date
+        unless params[:search].nil?
+          if params[:search][:start_date].empty? || params[:search][:end_date].empty?
+            data << [cash_yield.date, cash_yield.value]
+          else
+            start_date = params[:search][:start_date].to_date
+            end_date = params[:search][:end_date].to_date
+            data << [cash_yield.date, cash_yield.value] if cash_yield.date > start_date && cash_yield.date < end_date
+          end
         end
       end
       @data << {
