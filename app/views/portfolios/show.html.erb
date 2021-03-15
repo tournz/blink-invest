@@ -126,21 +126,10 @@
   </table>
 </div>
 
-
-    <% @subscriptions = current_user.subscriptions %>
-    <% @data = [] %>
-    <% @subscriptions.each do |subscription| %>
-      <%  dates_and_values = [] %>
-      <% name = subscription.project.name %>
-      <% subscription.project.cash_yields.each do |cash_yield| %>
-        <% dates_and_values << [cash_yield.date, cash_yield.value] if cash_yield.date < Date.today + 1.year %>
-      <% end %>
-      <% @data << { %>
-        <% name: name, %>
-        <% data: dates_and_values %>
-      <% } %>
-    <% end %>
-
+<%= simple_form_for :search, url: portfolio_path, method: :get do |f| %>
+  <%= f.date_field :start_date %> 
+  <%= f.date_field :end_date %> 
+  <%= f.button :submit, 'Search', class: 'btn btn-success' %>
+<% end %>
 
 <%= column_chart @data, stacked: true %> 
-
