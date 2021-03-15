@@ -19,23 +19,32 @@ class PortfoliosController < ApplicationController
     @confirmed_management_fee_average = sumproduct(management_fee_array(@confirmed_projects), project_invested_amount_array(@confirmed_projects)) / @confirmed_projects_subscriptions.sum(&:amount)
     @confirmed_projects_subscriptions_amount = Subscription.joins(:project).where(user: current_user, projects: { funded: true }).sum(&:amount)
 
-    # Data for charts
     @subscriptions = current_user.subscriptions
     @subscriptions = @subscriptions.select(:project_id).distinct
     @data = []
-
     @subscriptions.each do |subscription|
       data = []
       name = subscription.project.name
       subscription.project.cash_yields.each do |cash_yield|
-        data << [cash_yield.date, cash_yield.value] if cash_yield.date < Date.today + 4.years
+        if params[:search][:start_date].empty? || params[:search][:end_date].empty?
+          data << [cash_yield.date, cash_yield.value]
+        else
+          start_date = params[:search][:start_date].to_date
+          end_date = params[:search][:end_date].to_date
+          data << [cash_yield.date, cash_yield.value] if cash_yield.date > start_date && cash_yield.date < end_date
+        end
       end
       @data << {
         name: name,
         data: data
       }
     end
-    # Data for charts end
+    # Reject empty entries
+    @data = @data.reject { |cash_yield| cash_yield[:data].empty? }
+    # Sort by date
+    @data.sort_by! do |cash_yield|
+      cash_yield[:data][0][0]
+    end
   end
 
   private
