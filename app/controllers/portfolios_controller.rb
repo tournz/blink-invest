@@ -19,11 +19,11 @@ class PortfoliosController < ApplicationController
     @confirmed_management_fee_average = sumproduct(management_fee_array(@confirmed_projects), project_invested_amount_array(@confirmed_projects)) / @confirmed_projects_subscriptions.sum(&:amount)
     @confirmed_projects_subscriptions_amount = Subscription.joins(:project).where(user: current_user, projects: { funded: true }).sum(&:amount)
 
-    # Numbers for charts
+    # Data for charts
     @subscriptions = current_user.subscriptions
-    @subscriptions = @subscriptions.select(:project_id)
+    @subscriptions = @subscriptions.select(:project_id).distinct
     @data = []
-    
+
     @subscriptions.each do |subscription|
       data = []
       name = subscription.project.name
@@ -35,7 +35,7 @@ class PortfoliosController < ApplicationController
         data: data
       }
     end
-    # Numbers for charts end
+    # Data for charts end
   end
 
   private
