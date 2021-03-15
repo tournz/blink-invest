@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_125213) do
+ActiveRecord::Schema.define(version: 2021_03_15_081014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 2021_03_10_125213) do
     t.index ["project_id"], name: "index_cash_yields_on_project_id"
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_chatrooms_on_project_id"
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
@@ -65,11 +72,11 @@ ActiveRecord::Schema.define(version: 2021_03_10_125213) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.bigint "project_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_messages_on_project_id"
+    t.bigint "chatroom_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -84,10 +91,10 @@ ActiveRecord::Schema.define(version: 2021_03_10_125213) do
   create_table "polls", force: :cascade do |t|
     t.text "title"
     t.bigint "user_id", null: false
-    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_polls_on_project_id"
+    t.bigint "chatroom_id", null: false
+    t.index ["chatroom_id"], name: "index_polls_on_chatroom_id"
     t.index ["user_id"], name: "index_polls_on_user_id"
   end
 
@@ -144,12 +151,13 @@ ActiveRecord::Schema.define(version: 2021_03_10_125213) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cash_yields", "projects"
+  add_foreign_key "chatrooms", "projects"
   add_foreign_key "favorites", "projects"
   add_foreign_key "favorites", "users"
-  add_foreign_key "messages", "projects"
+  add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "poll_options", "polls"
-  add_foreign_key "polls", "projects"
+  add_foreign_key "polls", "chatrooms"
   add_foreign_key "polls", "users"
   add_foreign_key "responses", "poll_options"
   add_foreign_key "responses", "users"

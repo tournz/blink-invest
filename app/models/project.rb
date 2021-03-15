@@ -3,10 +3,11 @@ class Project < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :users, through: :subscriptions
-  has_many :messages, dependent: :destroy
   has_many :investment_highlights
+  has_one :chatroom
   has_one_attached :banner_picture
   after_create :calc_surface
+  after_create :create_chatroom
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
@@ -59,6 +60,10 @@ class Project < ApplicationRecord
   end
 
   private
+
+  def create_chatroom
+    Chatroom.create(project: self)
+  end
 
   def calc_surface
     update surface: amount / (rand(0.8..1.2) * 10_000).round

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #  resources :favorites, only: [:create, :destroy]
   end
   resource :portfolio, only: :show
-  #resources :polls, only: [] do
-  #  resources :responses, only: :create
-  # end
+  resources :chatrooms, only: :show do
+    resources :messages, only: [:create]
+  end
 end
