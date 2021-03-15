@@ -1,0 +1,15 @@
+<div class="container">
+  <h1> <%= @poll.title %> </h1>
+  <%= simple_form_for [@poll, @response] do |f| %>
+    <%= f.association :poll_option, label: "Answer", collection: @poll.poll_options, label_method: :content %>
+    <%= f.button :submit %>
+  <% end %>
+
+  <% if @poll.user == current_user %>
+    <%= simple_form_for [@poll, @poll_option] do |f| %>
+      <%= f.input :content, label: "Additional poll option", placeholder: "Answer option" %>
+      <%= f.button :submit %>
+    <% end %>
+    <p><%= link_to "Finish creating the poll", chatroom_path(@chatroom) %></p>
+  <% end %>
+</div>
