@@ -1,0 +1,19 @@
+<h1>Chatrooms#show</h1>
+<p>Find me in app/views/chatrooms/show.html.erb</p>
+<%= @chatroom.project.name %>
+<%= simple_form_for [@chatroom, @message] do |f| %>
+  <%= f.input :amount, :label => "Choose the amount (maximum #{number_to_currency(@max_amount)}):" %>
+      <%= f.button :submit %>
+<% end %>
+
+<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+  <% @chatroom.messages.each do |message| %>
+    <div class="message-container" id="message-<%= message.id %>">
+      <i class="author">
+        <span><%= message.user.nickname %></span>
+        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p><%= message.content %></p>
+    </div>
+  <% end %>
+</div>

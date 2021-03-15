@@ -23,7 +23,6 @@ class PortfoliosController < ApplicationController
     @data = []
     @subscriptions.each do |subscription|
       data = []
-      # byebug
       name = subscription.project.name
       subscription.project.cash_yields.each do |cash_yield|
         data << [cash_yield.date, cash_yield.value] if cash_yield.date < Date.today + 4.years
