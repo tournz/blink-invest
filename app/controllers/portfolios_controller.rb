@@ -19,20 +19,19 @@ class PortfoliosController < ApplicationController
     @confirmed_management_fee_average = sumproduct(management_fee_array(@confirmed_projects), project_invested_amount_array(@confirmed_projects)) / @confirmed_projects_subscriptions.sum(&:amount)
     @confirmed_projects_subscriptions_amount = Subscription.joins(:project).where(user: current_user, projects: { funded: true }).sum(&:amount)
 
-    @subscriptions = current_user.subscriptions
-    @data = []
-    @subscriptions.each do |subscription|
-      data = []
-      # byebug
-      name = subscription.project.name
-      subscription.project.cash_yields.each do |cash_yield|
-        data << [cash_yield.date, cash_yield.value] if cash_yield.date < Date.today + 4.years
-      end
-      @data << {
-        name: name,
-        data: data
-      }
-    end
+    # @subscriptions = current_user.subscriptions
+    # @data = []
+    # @subscriptions.each do |subscription|
+    #   data = []
+    #   name = subscription.project.name
+    #   subscription.project.cash_yields.each do |cash_yield|
+    #     data << [cash_yield.date, cash_yield.value] if cash_yield.date < Date.today + 4.years
+    #   end
+    #   @data << {
+    #     name: name,
+    #     data: data
+    #   }
+    # end
   end
 
   private
