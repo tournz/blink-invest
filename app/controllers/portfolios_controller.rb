@@ -20,6 +20,7 @@ class PortfoliosController < ApplicationController
     @confirmed_projects_subscriptions_amount = Subscription.joins(:project).where(user: current_user, projects: { funded: true }).sum(&:amount)
 
     # @subscriptions = current_user.subscriptions
+    # @subscriptions = @subscriptions.select(:project_id).distinct
     # @data = []
     # @subscriptions.each do |subscription|
     #   data = []
@@ -32,6 +33,7 @@ class PortfoliosController < ApplicationController
     #     data: data
     #   }
     # end
+
   end
 
   private
