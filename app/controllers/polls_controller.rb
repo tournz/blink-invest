@@ -11,7 +11,7 @@ class PollsController < ApplicationController
     @poll.user = current_user
     if @poll.save
       Message.create(content: "Poll: #{@poll.title}", user: @poll.user, chatroom: @poll.chatroom, poll: @poll)
-      redirect_to new_poll_poll_option_path(@poll)
+      redirect_to chatroom_path(@chatroom)
     else
       render :new
     end
@@ -20,7 +20,6 @@ class PollsController < ApplicationController
   def show
     @poll = Poll.find(params[:id])
     @poll_option = PollOption.new(poll: @poll)
-    @poll_options = @poll.poll_options
     @chatroom = @poll.chatroom
     @response = Response.new
   end
