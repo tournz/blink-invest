@@ -14,5 +14,9 @@ Rails.application.routes.draw do
   resource :portfolio, only: :show
   resources :chatrooms, only: :show do
     resources :messages, only: [:create]
+    resources :polls, only: [:new, :create]
+  end
+  resources :polls, only: :show do
+    resources :poll_options, only: [:new, :create]
   end
 end

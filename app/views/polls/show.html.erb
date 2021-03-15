@@ -1,0 +1,8 @@
+<div class="container">
+  <h1> <%= @poll.title %> </h1>
+    <% @poll.poll_options.each do |poll_option| %>
+      <p><%= poll_option.content %> </p>
+    <% end %>
+  <p><%= link_to "Add another answer to the poll", new_poll_poll_option_path(@poll) %></p>
+  <p><%= link_to "Finish creating the poll", chatroom_path(@chatroom) %></p>
+</div>
