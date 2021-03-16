@@ -10,5 +10,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @users = @project.users.distinct
+    @pie_data = ChartkickMethods.pie_chart_method(@users, @project)
   end
 end
