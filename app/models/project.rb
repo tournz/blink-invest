@@ -4,13 +4,17 @@ class Project < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :users, through: :subscriptions
   has_many :investment_highlights
-  has_one :chatroom
+  has_one :chatroom, dependent: :destroy
   has_one_attached :banner_picture
   after_create :calc_surface
   after_create :create_chatroom
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
+
+  def oversubscribed?(subscription)
+    subscription.amount + subscriptions.sum(&:amount) > amount
+  end
 
   def net_equity_multiple
     (cash_yields.sum(&:value) / amount).round(1)
@@ -58,6 +62,17 @@ class Project < ApplicationRecord
     end
     return (bottom + top) / 2
   end
+
+  # SEARCH
+
+  include PgSearch::Model
+  pg_search_scope :search_by_name_location_description,
+    against: [ :name, :location, :description],
+    using: {
+      tsearch: { prefix: true }
+    }
+
+  # SEARCH END
 
   private
 

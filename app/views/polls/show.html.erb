@@ -1,0 +1,22 @@
+<div class="container">
+  <h1> <%= @poll.title %> </h1>
+
+  <% unless @poll.responses.any? { |response| response.user == current_user} %>
+    <%= simple_form_for [@poll, @response] do |f| %>
+      <%= f.association :poll_option, label: "Answer", collection: @poll.poll_options, label_method: :content %>
+      <%= f.button :submit, "Send vote" %>
+    <% end %>
+  <% end %>
+
+  <% if @poll.user == current_user %>
+    <p>Existing poll options:</p>
+    <% @poll.poll_options.each do |poll_option| %>
+      <p><%= poll_option.content %></p>
+    <% end %>
+    <%= simple_form_for [@poll, @poll_option] do |f| %>
+      <%= f.input :content, label: "Additional poll option:", placeholder: "Poll option" %>
+      <%= f.button :submit, "Add poll option" %>
+    <% end %>
+    <p><%= link_to "Finish creating the poll", chatroom_path(@chatroom) %></p>
+  <% end %>
+</div>

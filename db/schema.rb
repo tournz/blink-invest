@@ -76,7 +76,9 @@ ActiveRecord::Schema.define(version: 2021_03_15_130300) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "chatroom_id"
+    t.bigint "poll_id"
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["poll_id"], name: "index_messages_on_poll_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -166,6 +168,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_130300) do
   add_foreign_key "favorites", "projects"
   add_foreign_key "favorites", "users"
   add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "polls"
   add_foreign_key "messages", "users"
   add_foreign_key "poll_options", "polls"
   add_foreign_key "polls", "chatrooms"
