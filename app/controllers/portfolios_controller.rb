@@ -71,19 +71,19 @@ class PortfoliosController < ApplicationController
     @data_last = []
     @last_cash_yields_only.each do |cash_yield|
 
-      data_Last = []
+      data_last = []
       unless params[:search].nil?
         if params[:search][:start_date].empty? || params[:search][:end_date].empty?
-          data_Last << [cash_yield.date, cash_yield.value]
+          data_last << [cash_yield.date, cash_yield.value]
         else
           start_date = params[:search][:start_date].to_date
           end_date = params[:search][:end_date].to_date
-          data_Last << [cash_yield.date, cash_yield.value] if cash_yield.date > start_date && cash_yield.date < end_date
+          data_last << [cash_yield.date, cash_yield.value] if cash_yield.date > start_date && cash_yield.date < end_date
         end
       end
       @data_last << {
         name: cash_yield.project.name,
-        data: data_Last
+        data: data_last
       }
     end
      # Reject empty entries
