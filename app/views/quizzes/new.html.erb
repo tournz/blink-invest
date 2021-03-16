@@ -1,14 +1,24 @@
-<h1>Assessment</h1>
+<div class="container">
+<h2>Assessment</h2>
+</div>
 
-<div>
-    <%= simple_form_for @quiz do |f| %>
+<div class="container">
+    <div class="col-12 col-sm-6 my-auto">
+      <%= simple_form_for @quiz do |f| %>
+        <p> Please tell us how much risk are you willing to take? </p>
         <%= f.input :risk, :collection => %w[Low Medium High] %>
+        <p> Are you looking to invest for a short or long period of time? </p>
         <%= f.input :horizon, :collection => %w[short-term long-term] %>
+        <p> What percentage of your income do you dedicate towards investments? </p>
         <%= f.input :income_inv_percentage, :collection => %w[<10 10-30 30-50 >50] %>
+        <p> How much income do you generate annually? This helps us identify the most effective options for you. </p>
         <%= f.input :annual_income, :collection => %w[<20,000 20-50,000 >50,000] %>
+        <p> If you were making a financial decision; which of the following would you choose? </p>
         <%= f.input :risk_case, :collection => %w[Loss0/Gain200 Loss200/Gain500 Loss800/Gain1200 Loss2000/Gain2500] %>
+        <p> Please tell us your age </p>
         <%= f.input :age %>
          <div class="form-group">
         <%= f.submit "See options", class: "btn btn-primary" %>
       <% end %>
+    </div>
  </div>
