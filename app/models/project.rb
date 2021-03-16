@@ -59,6 +59,19 @@ class Project < ApplicationRecord
     return (bottom + top) / 2
   end
 
+  # SEARCH
+
+  include PgSearch::Model
+  pg_search_scope :search_by_name_location_description,
+    against: [ :name, :location, :description],
+    using: {
+      tsearch: { prefix: true }
+    }
+
+  # SEARCH END
+  
+
+
   private
 
   def create_chatroom
