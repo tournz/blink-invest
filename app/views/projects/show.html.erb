@@ -76,6 +76,7 @@
 
     </div>
   </div>
-
-<%= link_to "Access the chatroom", chatroom_path(@project.chatroom)  %>
+<% if @project.subscriptions.any? { |subscription| subscription.user == current_user } %>
+  <%= link_to "Access the chatroom", chatroom_path(@project.chatroom)  %>
+<% end %>
 
