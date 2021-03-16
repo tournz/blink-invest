@@ -1,43 +1,41 @@
 <div class="container">
 <h1>Subscribe to this offering</h1>
 <%= link_to "Back to the project", project_path(@project) %>
-<h3>Other investors present on this deal:</h3>
 
-<% stacked_bar = [] %>
-<% @users.each do |user| %>
-  <% user_project_amount = user.subscriptions.where(project: @project).sum(&:amount) %>
-  <div class="row">
-    <div class="col-6">
-      <div class="user-box"><%= cl_image_tag user.photo.key, height: 50, width: 50, crop: :fill %> <%= user.name %> :
-        <p>we<%= number_to_currency(user_project_amount) %></p>
+
+    <% commited = @project.percentage_subscribed * 100 %>
+    <div class="progress">
+      <div class="progress-bar bg-dark" role="progressbar" style="width: <%= commited %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Commited <%= commited %>%</div>
+    </div>
+
+
+<h3>Other investors present on this deal:</h3>
+<div class="row">
+  <div class="col-6"> 
+    <% stacked_bar = [] %>
+    <% @users.each do |user| %>
+      <% user_project_amount = user.subscriptions.where(project: @project).sum(&:amount) %>
+      <div class="user-box mb-2"><%= cl_image_tag user.photo.key, height: 40, width: 40, class:"avatar shadow" %> <%= user.name %> :
+        <%= number_to_currency(user_project_amount) %>
         <% user_percentage = 100 * user_project_amount / @project.amount %>
         <% user_percentage = user_percentage.round(1) %>
         <% stacked_bar << user_percentage %>
       </div>
-    </div>
+    <% end %>
   </div>
-<% end %>
-
-<p class="card-small-text">Commited: </p>
-  <% commited = @project.percentage_subscribed * 100 %>
-
-<div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: <%= commited %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><%= commited %>%</div>
+  <div class="col-6">
+    <%= pie_chart @pie_data, suffix: "%",title: "Shares of investors", legend: "right" %>
+  </div>
 </div>
+
 
 <%# STACKED PROGRESS BAR START %>
 <p> </p>
-<div class="progress">
-  <% @users.each_with_index do |user, i| %>
-    <% user_project_amount = user.subscriptions.where(project: @project).sum(&:amount) %>
-    <% user_percentage = 100 * user_project_amount / @project.amount %>
-    <% user_percentage = user_percentage.round(0) %>
-    <p> </p>
-    <% first_name = user.name.split[0] %>
-    <% colors = %w[secondary primary success warning info dark]%>
-    <div class="progress-bar bg-<%= colors[i] %>" role="progressbar" style="width: <%= user_percentage %>%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><%= first_name %>: <%= user_percentage %>%</div>
-  <% end %>
-</div>
+
+<%# STACKED PROGRESS BAR STARTEND%>
+
+
+
 
   <%= simple_form_for [@project, @subscription] do |f| %>
       <%= f.input :amount, :label => "Choose the amount (maximum #{number_to_currency(@max_amount)}):" %>
