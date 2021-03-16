@@ -63,20 +63,9 @@
       <%= render 'projects/map-card-index', locales: { project: @project } %>
     <%# END of MAP %>
   </div>
-</div>
-
-
-      <div class="container mt-3">
-      </div>
-    </div>
-  </div>
-
-  <div class="row bottom-section">
-    <div class="col-6 m-auto">
-
-    </div>
-  </div>
-<% if @project.subscriptions.any? { |subscription| subscription.user == current_user } %>
-  <%= link_to "Access the chatroom", chatroom_path(@project.chatroom)  %>
+<%# Chatromm button%>
+<% if @project.subscriptions.any? { |subscription| subscription.user == current_user } %>
+  <%= link_to "Access the chatroom", chatroom_path(@project.chatroom) %>
 <% end %>
-
+<%# Chatromm button end %>
+</div>
