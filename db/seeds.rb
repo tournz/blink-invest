@@ -155,10 +155,6 @@ user = User.create(name: 'Yair Gordon', email: 'yair@blink.com', password: 'pass
 user.photo.attach(io: file, filename: "#{user.email}-photo.png", content_type: 'image/png')
 
 
-
-
-
-
 Project.first(7).each do |project|
   User.all.each do |user|
     Subscription.create(project: project, user: user, amount: (project.amount * rand(0.025..0.125)).round(2))
