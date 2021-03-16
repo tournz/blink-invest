@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :responses
   has_many :projects, through: :subscriptions
   has_one_attached :photo
+  has_one :quiz
 end

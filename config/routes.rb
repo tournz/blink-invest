@@ -20,4 +20,9 @@ Rails.application.routes.draw do
     resources :poll_options, only: :create
     resources :responses, only: :create
   end
+
+
+  #GET	/quizzes/new(.:format)
+  #POST	/quizzes(.:format)
+  resources :quizzes, only: [:new, :create]
 end
