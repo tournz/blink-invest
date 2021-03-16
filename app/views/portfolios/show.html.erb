@@ -125,6 +125,7 @@
     </tfoot>
   </table>
 </div>
+<h1 class="chart-header">Chash yields within period; by month</h1>
 
 <%= simple_form_for :search, url: portfolio_path, method: :get do |f| %>
   <%= f.date_field :start_date %> 
@@ -133,3 +134,6 @@
 <% end %>
 
 <%= column_chart @data, stacked: true %> 
+<h1 class="chart-header">Last payouts</h1>
+
+<%= column_chart @data_last, stacked: true %> 
