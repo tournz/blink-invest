@@ -8,9 +8,14 @@ class Project < ApplicationRecord
   has_one_attached :banner_picture
   after_create :calc_surface
   after_create :create_chatroom
+  validate :project_cannot_be_overfunded
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
+
+  def project_cannot_be_overfunded
+    errors.add(:percentage_subscribed, "can't be superior to 100%") if percentage_subscribed > 1
+  end
 
   def net_equity_multiple
     (cash_yields.sum(&:value) / amount).round(1)
@@ -69,8 +74,6 @@ class Project < ApplicationRecord
     }
 
   # SEARCH END
-  
-
 
   private
 

@@ -5,6 +5,6 @@ class Subscription < ApplicationRecord
 
   def update_funded
     @project = project
-    @project.update(funded: true) if @project.percentage_subscribed == 1
+    @project.update(funded: true) if @project.percentage_subscribed >= 1
   end
 end
