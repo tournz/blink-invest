@@ -1,7 +1,6 @@
 <div class="container">
 <h2>Assessment</h2>
 </div>
-
 <div class="container">
     <div class="col-12 col-sm-6 my-auto">
       <%= simple_form_for @quiz do |f| %>
@@ -18,7 +17,12 @@
         <p> Please tell us your age </p>
         <%= f.input :age %>
          <div class="form-group">
-        <%= f.submit "See options", class: "btn btn-primary" %>
+        <%= f.submit "See options", class: "btn btn-primary"  %>
       <% end %>
     </div>
+ <div class="spinner-grow d-none"role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+</div>
  </div>
+
