@@ -4,17 +4,16 @@ class Project < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :users, through: :subscriptions
   has_many :investment_highlights
-  has_one :chatroom
+  has_one :chatroom, dependent: :destroy
   has_one_attached :banner_picture
   after_create :calc_surface
   after_create :create_chatroom
-  validate :project_cannot_be_overfunded
 
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
 
-  def project_cannot_be_overfunded
-    errors.add(:percentage_subscribed, "can't be superior to 100%") if percentage_subscribed > 1
+  def oversubscribed?(subscription)
+    subscription.amount + subscriptions.sum(&:amount) > amount
   end
 
   def net_equity_multiple

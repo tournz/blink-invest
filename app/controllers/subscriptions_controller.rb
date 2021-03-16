@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
 
   def new
     @subscription = Subscription.new
-    @max_amount = @project.amount * (1 - @project.percentage_subscribed)
+    @max_amount = @project.subscriptions.sum(&:amount)
     @users = @project.users.distinct
   end
 
@@ -12,6 +12,8 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     @subscription.project = @project
     @subscription.user = @user
+    @users = @project.users.distinct
+    @max_amount = @project.subscriptions.sum(&:amount)
     if @subscription.save
       redirect_to portfolio_path
     else
