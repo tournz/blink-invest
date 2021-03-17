@@ -31,6 +31,7 @@ import { initChatroomCable } from "../channels/chatroom_channel";
 import { initMapbox } from '../plugins/init_mapbox';
 import { initSpinner } from "../loading/spinner"
 import { adjustFinancials } from "../plugins/subscription"
+import { initWizard } from "../components/init_wizard"
 
 // Chartkick
 // import {Chartkick} from 'chartkick'
@@ -44,4 +45,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initChatroomCable();
   initSpinner();
+  initWizard();
 });

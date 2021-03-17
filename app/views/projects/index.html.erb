@@ -1,35 +1,38 @@
-<div class="index-background">
-</div>
-  <div class="container absolute">
-
-    <div class="container my-3 py-3 bg-white">
-      <%= form_tag projects_path, method: :get do %>
-        <div class="row">
-          <div class="col-6">
-            <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Farm name, crop, or location..." %>
-          </div>
-          <div class="col-6">
-            <%= submit_tag "Search", class: "btn button-style  rounded-0" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <% if @projects.empty? %>
-      <p class="card-small-text"> no results with "<%= params[:query] %>", maybe try search for "apple"...</p>
-    <% end %>
-
-    <%# MAP %>
-    <div id="map"
-      style="width: 100%; height: 50vh;"
-      data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
-
-    <%# Project list %>
-    <%= render partial: 'projects/list-of-cards', locales: { projects: @projects } %>
+    <div class="row my-3 py-3 px-5">
+      <div class="col-7">
+        <%# Project list %>
+        <%= render partial: 'projects/list-of-cards', locales: { projects: @projects } %>
+      </div>
     
-  </div>
+      <div class="col-5 fixed" >
+        <div class="container mb-3 py-3 bg-white">
+          <%= form_tag projects_path, method: :get do %>
+            <div class="row">
+              <div class="col-8">
+                <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Farm name, crop, or location..." %>
+              </div>
+              <div class="col-4">
+                <%= submit_tag "Search", class: "btn button-style btn-block rounded-0" %>
+              </div>
+              <% if @projects.empty? %>
+                <p class="card-small-text"> no results with "<%= params[:query] %>", maybe try search for "apple"...</p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <%# MAP %>
+        <div class="border">
+        <div id="map"
+          style="width: 100%; height: 100vh;"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+        </div>
+      </div>
+
+    </div>
+
