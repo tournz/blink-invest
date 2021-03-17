@@ -32,6 +32,7 @@ import { initMapbox } from '../plugins/init_mapbox';
 
 
 import { initSpinner } from "../loading/spinner"
+import { initWizard } from "../components/init_wizard"
 
 // Chartkick
 // import {Chartkick} from 'chartkick'
@@ -47,4 +48,5 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initChatroomCable();
   initSpinner();
+  initWizard();
 });
