@@ -6,7 +6,25 @@
   object-fit: cover;
   filter:brightness(60%);
 }
+.title-project {
+  font-size: 18px;
+}
+
 
 .fin-stat-show {
-  border-right: $borders;
+  // border-right: $borders;
+}
+.bg-gradient {
+  background: linear-gradient(to top, rgba(218, 180, 131, 0.1), rgba(255, 255, 255, 0.808));
+  border-radius: 5px
+}
+
+.map-show {
+  width: 100%;
+  object-fit: cover;
+}
+
+#pie-chart-show-project {
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.171));
+  
 }
