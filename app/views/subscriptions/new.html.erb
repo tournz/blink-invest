@@ -13,7 +13,7 @@
 
 <h3>Other investors present on this deal:</h3>
 <div class="row">
-  <div class="col-6"> 
+  <div class="col-6">
     <% stacked_bar = [] %>
     <% @users.each do |user| %>
       <% user_project_amount = user.subscriptions.where(project: @project).sum(&:amount) %>
@@ -32,7 +32,7 @@
     <% end %>
   </div>
   <div class="col-6">
-   
+
     <%= pie_chart @pie_data, suffix: "%",title: "Shares of investors", legend: "right" %>
   </div>
 </div>
@@ -42,12 +42,16 @@
 <p> </p>
 
 <%# STACKED PROGRESS BAR STARTEND%>
-
-
-
+  <div class="projections">
+    <p id="subscription-percentage"></p>
+    <p id="final-capital-value"></p>
+    <p id="acre-surface"></p>
+  </div>
 
   <%= simple_form_for [@project, @subscription] do |f| %>
       <%= f.input :amount, :label => "Choose the amount (maximum #{number_to_currency(@max_amount)}):" %>
       <%= f.button :submit %>
   <% end %>
 </div>
+
+<div id="subscription-details" data-project-amount='<%= @project.amount %>' data-final-value='<%= @project.cash_yields.last.value %>' data-last-year='<%= @project.maturity_date.year %>' data-surface='<%= @project.surface %>'></div>

@@ -1,7 +1,6 @@
 import consumer from "./consumer";
 
 const initChatroomCable = () => {
-  console.log("Hello")
   const messagesContainer = document.getElementById('messages');
   if (messagesContainer) {
     const id = messagesContainer.dataset.chatroomId;

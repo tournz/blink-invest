@@ -2,8 +2,6 @@ class SubscriptionsController < ApplicationController
   include ActionView::Helpers::NumberHelper
   before_action :set_project, only: %i[new create]
   before_action :set_user, only: :create
-  
-  
 
   def new
     @subscription = Subscription.new
@@ -11,8 +9,8 @@ class SubscriptionsController < ApplicationController
     @users = @project.users.distinct
     @pie_data = ChartkickMethods.pie_chart_method(@users, @project)
   end
-  
-  
+
+
   def create
     @subscription = Subscription.new(subscription_params)
     @subscription.project = @project
@@ -29,17 +27,17 @@ class SubscriptionsController < ApplicationController
       render :new
     end
   end
-  
+
   private
-  
+
   def set_project
     @project = Project.find(params[:project_id])
   end
-  
+
   def set_user
     @user = current_user
   end
-  
+
 
   def subscription_params
     params.require(:subscription).permit(:amount)
