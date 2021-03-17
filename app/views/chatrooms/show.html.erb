@@ -13,7 +13,7 @@
             <% if message.poll.responses.any? { |response| response.user == current_user} %>
               <p><%= link_to "Edit the poll (You have already voted)", poll_path(message.poll) %></p>
               <% message.poll.poll_options.each do |poll_option| %>
-                <p><%= poll_option.content %>: <div class="progress-bar" role="progressbar" style="width: <%= poll_option.responses.count %>" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><%= poll_option.responses.count %></div></p>
+                <p><%= poll_option.content %>: <div class="progress-bar" role="progressbar" style="width: poll_option.responses.count" aria-valuenow= poll_option.responses.count aria-valuemin="0" aria-valuemax="15"><%= poll_option.responses.count %></div></p>
               <% end %>
             <% else %>
               <p><%= link_to "Edit Or Vote", poll_path(message.poll) %></p>
@@ -22,7 +22,7 @@
             <% if message.poll.responses.any? { |response| response.user == current_user} %>
               <p><%= link_to "You have already voted", "" %></p>
               <% message.poll.poll_options.each do |poll_option| %>
-                <p><%= poll_option.content %>: <div class="progress-bar" role="progressbar" style="width: <%= poll_option.responses.count %>" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><%= poll_option.responses.count %></div></p>
+                <p><%= poll_option.content %>: <div class="progress-bar" role="progressbar" style="width: poll_option.responses.count" aria-valuenow= poll_option.responses.count aria-valuemin="0" aria-valuemax="15"><%= poll_option.responses.count %></div></p>
               <% end %>
             <% else %>
               <p><%= link_to "Participate", poll_path(message.poll) %></p>
