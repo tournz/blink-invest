@@ -42,17 +42,16 @@
 <p> </p>
 
 <%# STACKED PROGRESS BAR STARTEND%>
-
-
-
+  <div class="projections">
+    <p id="subscription-percentage"></p>
+    <p id="final-capital-value"></p>
+    <p id="acre-surface"></p>
+  </div>
 
   <%= simple_form_for [@project, @subscription] do |f| %>
       <%= f.input :amount, :label => "Choose the amount (maximum #{number_to_currency(@max_amount)}):" %>
       <%= f.button :submit %>
   <% end %>
-  <div class="projections">
-    <p class="ownership-percentage">Amounts to <%= @subscription_percentage %>%</p>
-    <p class="final-capital-value"></p>
-    <p class="acre-surface"></p>
-  </div>
 </div>
+
+<div id="subscription-details" data-project-amount='<%= @project.amount %>' data-final-value='<%= @project.cash_yields.last.value %>' data-last-year='<%= @project.maturity_date.year %>' data-surface='<%= @project.surface %>'></div>

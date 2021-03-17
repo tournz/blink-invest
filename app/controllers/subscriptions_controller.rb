@@ -3,8 +3,6 @@ class SubscriptionsController < ApplicationController
   before_action :set_project, only: %i[new create]
   before_action :set_user, only: :create
 
-
-
   def new
     @subscription = Subscription.new
     @max_amount = @project.amount - @project.subscriptions.sum(&:amount)
@@ -19,7 +17,6 @@ class SubscriptionsController < ApplicationController
     @subscription.user = current_user
     @users = @project.users.distinct
     @max_amount = @project.amount - @project.subscriptions.sum(&:amount)
-    @subscription_percentage = (100 * subscriptions_params[:amount].to_f / @project.amount).round(2)
     if @subscription.save
       @user_stake = current_user.subscriptions.where(project: @project).sum(&:amount).round(2)
       @user_stake_percentage = (100 * @user_stake / @project.amount).round(2)
