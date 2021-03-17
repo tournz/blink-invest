@@ -26,12 +26,21 @@ require("chart.js")
 
 // External imports
 import "bootstrap";
-import { initChatroomCable } from "../channels/chatroom_channel"
+
+import { initChatroomCable } from "../channels/chatroom_channel";
+import { initMapbox } from '../plugins/init_mapbox';
+
+
 import { initSpinner } from "../loading/spinner"
+
 // Chartkick
 // import {Chartkick} from 'chartkick'
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+
+document.addEventListener('turbolinks:load', () => {
+  initMapbox();
+});
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:

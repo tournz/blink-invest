@@ -1,2 +1,13 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.index-background{
+  height: 100vh;
+  background: url('fields_banner_for_home-CZ6CF44');
+  background-size: contain;
+  position: fixed;
+}
+.absolute {
+  // position: absolute;
+  top: 0;
+}
