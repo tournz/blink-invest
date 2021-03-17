@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Assessment</h2>
+  <p>Assessment</p>
   <div class="col-12 col-sm-6 my-auto" id="risk_assessment_wizard">
     <%= simple_form_for @quiz do |f| %>
       <div data-step="1">
@@ -7,14 +7,14 @@
         <%= f.input :risk, :collection => %w[Low Medium High] %>
         <p> Are you looking to invest for a short or long period of time? </p>
         <%= f.input :horizon, :collection => %w[short-term long-term] %>
-        <a class='btn btn-outline-primary' data-next-step="2" >Next Step</a>
+        <a class="btn button-style btn-block" data-next-step="2" >Next Step</a>
       </div>
       <div class="d-none" data-step="2">
         <p> What percentage of your income do you dedicate towards investments? </p>
         <%= f.input :income_inv_percentage, :collection => %w[<10 10-30 30-50 >50] %>
         <p> How much income do you generate annually? This helps us identify the most effective options for you. </p>
         <%= f.input :annual_income, :collection => %w[<20,000 20-50,000 >50,000] %>
-        <a class='btn btn-outline-primary' data-next-step="3" >Next Step</a>
+        <a class="btn button-style btn-block" data-next-step="3" >Next Step</a>
       </div>
       <div class="d-none" data-step="3">
         <p> If you were making a financial decision; which of the following would you choose? </p>
