@@ -129,6 +129,7 @@ Project.all.each do |project|
   CashYield.create(date: project.maturity_date, value: (project.amount * rand(0.001..0.005) + project.amount * rand(1.05..1.2)).round(2), project: project)
 end
 
+User.create(name: 'Blink Bot', email: 'blinkbot@blink.com', password: 'password')
 file = URI.open('https://avatars.githubusercontent.com/u/62432059?s=460&u=d90bafa134b175d53f7904cfc6e5322a4039b6a6&v=4')
 user = User.create(name: 'Boris Nikiforov', email: 'boris@blink.com', password: 'password')
 user.photo.attach(io: file, filename: "#{user.email}-photo.png", content_type: 'image/png')
@@ -155,14 +156,15 @@ user = User.create(name: 'Yair Gordon', email: 'yair@blink.com', password: 'pass
 user.photo.attach(io: file, filename: "#{user.email}-photo.png", content_type: 'image/png')
 
 
+user_array = User.all.reject { |user| user.name == 'Blink Bot'}
 Project.first(7).each do |project|
-  User.all.each do |user|
+  user_array.each do |user|
     Subscription.create(project: project, user: user, amount: (project.amount * rand(0.025..0.125)).round(2))
   end
 end
 
 Project.last(3).each do |project|
-  User.all.each do |user|
+  user_array.each do |user|
     Subscription.create(project: project, user: user, amount: (project.amount * 0.125).round(2))
   end
 end

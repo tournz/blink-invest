@@ -27,6 +27,7 @@ require("chart.js")
 // External imports
 import "bootstrap";
 import { initChatroomCable } from "../channels/chatroom_channel"
+import { initSpinner } from "../loading/spinner"
 // Chartkick
 // import {Chartkick} from 'chartkick'
 // Internal imports, e.g:
@@ -36,4 +37,5 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initChatroomCable();
+  initSpinner();
 });
