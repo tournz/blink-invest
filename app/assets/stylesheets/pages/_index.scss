@@ -5,9 +5,9 @@
   height: 100vh;
   background: url('fields_banner_for_home-CZ6CF44');
   background-size: contain;
+}
+.fixed {
+  right: 0;
   position: fixed;
 }
-.absolute {
-  // position: absolute;
-  top: 0;
-}
+
