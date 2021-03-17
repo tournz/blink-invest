@@ -1,4 +1,6 @@
-<div class="index-map-marker">
-<h3 class="card-title-project"><%= project.name %></h3>
-<p class="card-small-text"><%= project.location %></p>
+<div class="map-info-window">
+  <%= cl_image_tag project.banner_picture.key, height: 120, width: 250, crop: :fill, class:"card-image mt-2" %>
+  <%= link_to project.name, project, class:"map-popup-title"%>
+  <p class="map-popup-text"><%= project.location %></p>
+  <p class="map-popup-text"><%= project.crop %></p>
 </div>
