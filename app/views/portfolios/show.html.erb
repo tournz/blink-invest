@@ -1,139 +1,173 @@
-<div class="container">
-  <h1>Hi <%= current_user.name.split[0]%>, here is your porfolio as of <%= Date.today.strftime("%B %d, %Y") %></h1>
+<div class="portfolio-page">
+  <div class="portfolio-container mx-5">
 
-  <h3>Ongoing subscriptions:</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Crop</th>
-        <th>Surface (acres)</th>
-        <th>Ownership (%)</th>
-        <th>Amount Invested ($)</th>
-        <th>Total Project Amount ($)</th>
-        <th>% Funded</th>
-        <th>Start Date</th>
-        <th>Maturity Date</th>
-        <th>Net Cash Yield</th>
-        <th>Target Net IRR</th>
-        <th>Net Equity Multiple</th>
-        <th>LTV Ratio</th>
-        <th>Management Fee</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @projects.each do |project| %>
-        <tr>
-          <th><%= link_to project.name, project_path(project) %></th>
-          <td><%= project.location %></td>
-          <td><%= project.crop %></td>
-          <td><%= project.surface %></td>
-          <td><%= (100 * current_user.subscriptions.where(project: project).sum(&:amount) / project.amount).round(2) %> %</td>
-          <td><%= number_to_currency(current_user.subscriptions.where(project: project).sum(&:amount)) %></td>
-          <td><%= number_to_currency(project.amount) %></td>
-          <td><%= (project.percentage_subscribed * 100).round(2)%>%</td>
-          <td><%= project.start_date.strftime("%B %d, %Y") %></td>
-          <td><%= project.maturity_date.strftime("%B %d, %Y") %></td>
-          <td><%= (project.net_cash_yield * 100).round(2)%>%</td>
-          <td><%= (project.target_net_irr * 100).round(2) %>%</td>
-          <td><%= (project.net_equity_multiple).round(1) %>x</td>
-          <td><%= (project.ltv_ratio * 100).round(1)%>%</td>
-          <td><%= (project.management_fee*100).round(2) %>%</td>
-        </tr>
-      <% end %>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Total</th>
-        <td></td>
-        <td></td>
-        <td><%= @projects.sum(&:surface) %></td>
-        <td><%= (100 * @projects_subscriptions.sum(&:amount) / @projects.sum(&:amount)).round(2) %>%</td>
-        <td><%= number_to_currency(@projects_subscriptions.sum(&:amount))%></td>
-        <td><%= number_to_currency(@projects.sum(&:amount)) %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><%= (100 * @net_cash_yield_average).round(2) %>%</td>
-        <td><%= (100 * @target_net_irr_average).round(2) %>%</td>
-        <td><%= @net_equity_multiple_average.round(2) %>x</td>
-        <td><%= (100 * @ltv_ratio_average).round(1) %>%</td>
-        <td><%= (100 * @management_fee_average).round(2) %>%</td>
-      </tr>
-    </tfoot>
-  </table>
- 
+    <h3 class="table-header text-center my-3">Hi <%= current_user.name.split[0]%>, here is your porfolio as of <%= Date.today.strftime("%B %d, %Y") %></h1>
 
-  <h3>Confirmed projects:</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Crop</th>
-        <th>Surface (acres)</th>
-        <th>Ownership (%)</th>
-        <th>Amount Invested ($)</th>
-        <th>Total Project Amount ($)</th>
-        <th>Start Date</th>
-        <th>Maturity Date</th>
-        <th>Net Cash Yield</th>
-        <th>Target Net IRR</th>
-        <th>Net Equity Multiple</th>
-        <th>LTV Ratio</th>
-        <th>Management Fee</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @confirmed_projects.each do |project| %>
-        <tr>
-          <th><%= link_to project.name, project_path(project) %></th>
-          <td><%= project.location %></td>
-          <td><%= project.crop %></td>
-          <td><%= project.surface %></td>
-          <td><%= (100 * current_user.subscriptions.where(project: project).sum(&:amount) / project.amount).round(2) %> %</td>
-          <td><%= number_to_currency(current_user.subscriptions.where(project: project).sum(&:amount)) %></td>
-          <td><%= number_to_currency(project.amount) %></td>
-          <td><%= project.start_date.strftime("%B %d, %Y") %></td>
-          <td><%= project.maturity_date.strftime("%B %d, %Y") %></td>
-          <td><%= (project.net_cash_yield * 100).round(2)%>%</td>
-          <td><%= (project.target_net_irr * 100).round(2) %>%</td>
-          <td><%= (project.net_equity_multiple).round(1) %>x</td>
-          <td><%= (project.ltv_ratio * 100).round(1)%>%</td>
-          <td><%= (project.management_fee*100).round(2) %>%</td>
-        </tr>
+    <div class="table-container p-3">
+    <h3 class="table-header">Ongoing subscriptions</h3>
+      <table cellspacing="0" cellpadding="0" class="portfolio-table">
+        <thead>
+          <tr>
+            <th class="table-column-name">Name</th>
+            <th class="table-column-name">Location</th>
+            <th class="table-column-name">Crop</th>
+            <th class="table-column-name">Surface (acres)</th>
+            <th class="table-column-name">Ownership (%)</th>
+            <th class="table-column-name">Amount Invested ($)</th>
+            <th class="table-column-name">Total Project Amount ($)</th>
+            <th class="table-column-name">% Funded</th>
+            <th class="table-column-name">Start Date</th>
+            <th class="table-column-name">Maturity Date</th>
+            <th class="table-column-name">Net Cash Yield</th>
+            <th class="table-column-name">Target Net IRR</th>
+            <th class="table-column-name">Net Equity Multiple</th>
+            <th class="table-column-name">LTV Ratio</th>
+            <th class="table-column-name">Management Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @projects.each do |project| %>
+            <tr>
+              <th><%= link_to project.name, project_path(project), class:"table-column-name" %></th>
+              <td class="border-left cell-background"><%= project.location %></td>
+              <td class="border-left cell-background"><%= project.crop %></td>
+              <td class="border-left cell-background"><%= project.surface %></td>
+              <td class="border-left cell-background"><%= (100 * current_user.subscriptions.where(project: project).sum(&:amount) / project.amount).round(2) %> %</td>
+              <td class="border-left cell-background"><%= number_to_currency(current_user.subscriptions.where(project: project).sum(&:amount)) %></td>
+              <td class="border-left cell-background"><%= number_to_currency(project.amount) %></td>
+              <td class="border-left cell-background"><%= (project.percentage_subscribed * 100).round(2)%>%</td>
+              <td class="border-left cell-background"><%= project.start_date.strftime("%B %d, %Y") %></td>
+              <td class="border-left cell-background"><%= project.maturity_date.strftime("%b %d, %Y") %></td>
+              <td class="border-left cell-background"><%= (project.net_cash_yield * 100).round(2)%>%</td>
+              <td class="border-left cell-background"><%= (project.target_net_irr * 100).round(2) %>%</td>
+              <td class="border-left cell-background"><%= (project.net_equity_multiple).round(1) %>x</td>
+              <td class="border-left cell-background"><%= (project.ltv_ratio * 100).round(1) %>%</td>
+              <td class="border-left cell-background"><%= (project.management_fee*100).round(2) %>%</td>
+            </tr>
+          <% end %>
+        </tbody>
+        <tfoot class="border-top">
+          <tr >
+            <th class="" >Total</th>
+            <td></td>
+            <td></td>
+            <td class="total-numbers"><%= @projects.sum(&:surface) %></td>
+            <td class="total-numbers"><%= (100 * @projects_subscriptions.sum(&:amount) / @projects.sum(&:amount)).round(2) %>%</td>
+            <td class="total-numbers"><%= number_to_currency(@projects_subscriptions.sum(&:amount))%></td>
+            <td class="total-numbers"><%= number_to_currency(@projects.sum(&:amount)) %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="total-numbers"><%= (100 * @net_cash_yield_average).round(2) %>%</td>
+            <td class="total-numbers"><%= (100 * @target_net_irr_average).round(2) %>%</td>
+            <td class="total-numbers"><%= @net_equity_multiple_average.round(2) %>x</td>
+            <td class="total-numbers"><%= (100 * @ltv_ratio_average).round(1) %>%</td>
+            <td class="total-numbers"><%= (100 * @management_fee_average).round(2) %>%</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  
+
+    <div class="table-container p-3">
+    <h3 class="table-header">Confirmed projects</h3>
+      <table class="portfolio-table">
+        <thead>
+          <tr>
+            <th class="table-column-name">Name</th>
+            <th class="table-column-name">Location</th>
+            <th class="table-column-name">Crop</th>
+            <th class="table-column-name">Surface (acres)</th>
+            <th class="table-column-name">Ownership (%)</th>
+            <th class="table-column-name">Amount Invested ($)</th>
+            <th class="table-column-name">Total Project Amount ($)</th>
+            <th class="table-column-name">Start Date</th>
+            <th class="table-column-name">Maturity Date</th>
+            <th class="table-column-name">Net Cash Yield</th>
+            <th class="table-column-name">Target Net IRR</th>
+            <th class="table-column-name">Net Equity Multiple</th>
+            <th class="table-column-name">LTV Ratio</th>
+            <th class="table-column-name">Management Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @confirmed_projects.each do |project| %>
+            <tr>
+              <th><%= link_to project.name, project_path(project) %></th>
+              <td class="border-left cell-background"><%= project.location %></td>
+              <td class="border-left cell-background"><%= project.crop %></td>
+              <td class="border-left cell-background"><%= project.surface %></td>
+              <td class="border-left cell-background"><%= (100 * current_user.subscriptions.where(project: project).sum(&:amount) / project.amount).round(2) %> %</td>
+              <td class="border-left cell-background"><%= number_to_currency(current_user.subscriptions.where(project: project).sum(&:amount)) %></td>
+              <td class="border-left cell-background"><%= number_to_currency(project.amount) %></td>
+              <td class="border-left cell-background"><%= project.start_date.strftime("%B %d, %Y") %></td>
+              <td class="border-left cell-background"><%= project.maturity_date.strftime("%B %d, %Y") %></td>
+              <td class="border-left cell-background"><%= (project.net_cash_yield * 100).round(2)%>%</td>
+              <td class="border-left cell-background"><%= (project.target_net_irr * 100).round(2) %>%</td>
+              <td class="border-left cell-background"><%= (project.net_equity_multiple).round(1) %>x</td>
+              <td class="border-left cell-background"><%= (project.ltv_ratio * 100).round(1)%>%</td>
+              <td class="border-left cell-background"><%= (project.management_fee*100).round(2) %>%</td>
+            </tr>
+          <% end %>
+        </tbody>
+        <tfoot class="border-top">
+          <tr>
+            <th>Total</th>
+            <td></td>
+            <td></td>
+            <td class="total-numbers"><%= @confirmed_projects.sum(&:surface) %></td>
+            <td class="total-numbers"><%= (100 * @confirmed_projects_subscriptions.sum(&:amount) / @confirmed_projects.sum(&:amount)).round(2) %>%</td>
+            <td class="total-numbers"><%= number_to_currency(@confirmed_projects_subscriptions.sum(&:amount))%></td>
+            <td class="total-numbers"><%= number_to_currency(@confirmed_projects.sum(&:amount)) %></td>
+            <td></td>
+            <td></td>
+            <td class="total-numbers"><%= (100 * @confirmed_net_cash_yield_average).round(2) %>%</td>
+            <td class="total-numbers"><%= (100 * @confirmed_target_net_irr_average).round(2) %>%</td>
+            <td class="total-numbers"><%= @confirmed_net_equity_multiple_average.round(2) %>x</td>
+            <td class="total-numbers"><%= (100 * @confirmed_ltv_ratio_average).round(1) %>%</td>
+            <td class="total-numbers"><%= (100 * @confirmed_management_fee_average).round(2) %>%</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="portfolio-chart px-3 pb-3">
+      <h3 class="table-header my-3 pt-3">Chash yields within period by month</h1>
+      <%= simple_form_for :search, url: portfolio_path, method: :get do |f| %>
+        <%= f.date_field :start_date %> 
+        <%= f.date_field :end_date %> 
+        <%= f.button :submit, 'Search', class: 'btn button-style' %>
       <% end %>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Total</th>
-        <td></td>
-        <td></td>
-        <td><%= @confirmed_projects.sum(&:surface) %></td>
-        <td><%= (100 * @confirmed_projects_subscriptions.sum(&:amount) / @confirmed_projects.sum(&:amount)).round(2) %>%</td>
-        <td><%= number_to_currency(@confirmed_projects_subscriptions.sum(&:amount))%></td>
-        <td><%= number_to_currency(@confirmed_projects.sum(&:amount)) %></td>
-        <td></td>
-        <td></td>
-        <td><%= (100 * @confirmed_net_cash_yield_average).round(2) %>%</td>
-        <td><%= (100 * @confirmed_target_net_irr_average).round(2) %>%</td>
-        <td><%= @confirmed_net_equity_multiple_average.round(2) %>x</td>
-        <td><%= (100 * @confirmed_ltv_ratio_average).round(1) %>%</td>
-        <td><%= (100 * @confirmed_management_fee_average).round(2) %>%</td>
-      </tr>
-    </tfoot>
-  </table>
+      <%= column_chart @data, stacked: true, legend: "left",
+       colors: %w[#059DC0 #c9344d #004293 #937e64 #00b771 #44619b #04D4F0 #7eca9c #FFA384 #4C5270 #F652A0 #36EEE0 #DF8328 #004b96] %>
+    </div>
+
+    <div class="portfolio-chart px-3 pb-3">
+      <h3 class="table-header my-3 pt-3">Last payouts</h1>
+      <%= column_chart @data_last, stacked: true, legend: "left",
+       colors: %w[#059DC0 #c9344d #004293 #937e64 #00b771 #44619b #04D4F0 #7eca9c #FFA384 #4C5270 #F652A0 #36EEE0 #DF8328 #004b96],
+       animation: {
+        duration: 200,
+        easing: "linear"
+  } %> 
+    </div>
+
+    <%# <div class="test-colors"></div>
+    <h1 style="background-color: #059DC0;"> #059DC0</h1>
+    <h1 style="background-color: #c9344d;"> #c9344d</h1>
+    <h1 style="background-color: #004293;"> #004293</h1>
+    <h1 style="background-color: #937e64;"> #937e64</h1>
+    <h1 style="background-color: #00b771;"> #00b771</h1>
+    <h1 style="background-color: #44619b;"> #44619b</h1>
+    <h1 style="background-color: #04D4F0;"> #04D4F0</h1>
+    <h1 style="background-color: #7eca9c;"> #7eca9c</h1>
+    <h1 style="background-color: #FFA384;"> #FFA384</h1>
+    <h1 style="background-color: #4C5270;"> #4C5270</h1>
+    <h1 style="background-color: #F652A0;"> #F652A0</h1>
+    <h1 style="background-color: #36EEE0;"> #36EEE0</h1>
+    <h1 style="background-color: #DF8328;"> #DF8328</h1>
+    <h1 style="background-color: #004b96;"> #004b96</h1>
+    </div> %>
+
+
 </div>
-<h1 class="chart-header">Chash yields within period; by month</h1>
-
-<%= simple_form_for :search, url: portfolio_path, method: :get do |f| %>
-  <%= f.date_field :start_date %> 
-  <%= f.date_field :end_date %> 
-  <%= f.button :submit, 'Search', class: 'btn btn-success' %>
-<% end %>
-
-<%= column_chart @data, stacked: true %> 
-<h1 class="chart-header">Last payouts</h1>
-
-<%= column_chart @data_last, stacked: true %> 
