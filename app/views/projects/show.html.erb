@@ -1,55 +1,107 @@
 <%= cl_image_tag @project.banner_picture.key, crop: :fill, class:"show-banner" %>
 
 <div class="container card-project p-5" style="filter: opacity(100%); margin-top: 15vh;">
-  <h3 class="card-title-project "><%= @project.location %></h3>
-  <h1 class="card-title-project"><%= @project.name %></h1>
-  <p class="card-small-text"><%= @project.crop %></p>
 
-  <div class="row pt-3" >
-    <div class="fin-stat-show col">
-      <p class="numbers"><%= (@project.target_net_irr * 100).round(2) %>%</p>
-      <p class="card-small-text">Target Net IRR</p>
+  <div class="container pt-3" >
+    <div class="row">
+      <div class="col">
+        <h3 class="title-project"><%= @project.location %></h3>
+        <h1 class="title-project"><%= @project.name %></h1>
+        <p class="card-small-text"><%= @project.crop %></p>
+      </div>
+
+      <div class="col">
+        <p class="numbers  text-left">Commited <%= @project.percentage_subscribed * 100 %>%</p>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: <%= @project.percentage_subscribed * 100 %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div> 
+      </div>
     </div>
-    <div class="fin-stat-show col">
-      <p class="numbers"><%= (@project.net_cash_yield * 100).round(2) %>%</p>
-      <p class="card-small-text">Net Cash Yield</p>
-    </div>
-    <div class="fin-stat-show col">
-      <p class="numbers"><%= @project.net_equity_multiple %>x</p>
-      <p class="card-small-text">Net Equity Multiple</p>
-    </div>
-    <div class="fin-stat-show col">
-      <p class="numbers"><%= @project.target_hold %> Years</p>
-      <p class="card-small-text">Target Hold</p>
-    </div>
-    <div class="fin-stat-show col">
-      <p class="numbers"> $<%= @project.amount %></p>
-      <p class="card-small-text">Total</p>
-    </div>
-    <div class="fin-stat-show col">
-      <p class="numbers"><%= @project.surface %> km2</p>
-      <p class="card-small-text">Land surface</p>
-    </div>
-    <div class="fin-stat-show col">
-      <p class="numbers"><%= @project.crop %></p>
-      <p class="card-small-text">Crop</p>
-    </div>
-    <div class="fin-stat-show col">
-      <p class="numbers"><%= @project.start_date %></p>
-      <p class="card-small-text">Start date</p>
-    </div>
-    <div class="  col">
-      <p class="numbers"><%= @project.maturity_date %></p>
-      <p class="card-small-text">Maturity date</p>
+
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="row">
+          <div class="fin-stat-show col bg-gradient">
+            <p class="numbers"><%= (@project.target_net_irr * 100).round(2) %>%</p>
+            <p class="card-small-text">Target Net IRR</p>
+          </div>
+          <div class="fin-stat-show col bg-gradient">
+            <p class="numbers"><%= (@project.net_cash_yield * 100).round(2) %>%</p>
+            <p class="card-small-text">Net Cash Yield</p>
+          </div>
+          <div class="fin-stat-show col bg-gradient">
+            <p class="numbers"><%= @project.net_equity_multiple %>x</p>
+            <p class="card-small-text">Net Equity Multiple</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="fin-stat-show col bg-gradient">
+            <p class="numbers"><%= @project.target_hold %> Years</p>
+            <p class="card-small-text">Target Hold</p>
+          </div>
+          <div class="fin-stat-show col bg-gradient">
+            <p class="numbers"> $<%= @project.amount %></p>
+            <p class="card-small-text">Total</p>
+          </div>
+          <div class="fin-stat-show col bg-gradient">
+            <p class="numbers"><%= @project.surface %> km2</p>
+            <p class="card-small-text">Land surface</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="fin-stat-show col bg-gradient">
+            <p class="numbers"><%= @project.crop %></p>
+            <p class="card-small-text">Crop</p>
+          </div>
+          <div class="fin-stat-show col bg-gradient">
+            <p class="numbers"><%= @project.start_date %></p>
+            <p class="card-small-text">Start date</p>
+          </div>
+          <div class="col bg-gradient">
+            <p class="numbers"><%= @project.maturity_date %></p>
+            <p class="card-small-text">Maturity date</p>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <p class="card-small-text"><%= @project.description %></p>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="container">
+          <%= pie_chart @pie_data, suffix: "%",title: "Shares of investors", legend: "right", height: "400px", id: "pie-chart-show-project" %>
+        </div>
+      </div>
     </div>
   </div>
+    
+  
+  <div class="row">
+    <div class="col">
+      <% if @project.funded == true %>
+          <div class="btn button-style btn-block rounded-0">The project was already subscribed</div>
+        <% else %>
+          <%= link_to "Subscribe", new_project_subscription_path(@project), class:"btn button-style btn-block rounded-0" %>
+        <% end %>
+    </div>
+    <div class="col">
+      <% if @project.subscriptions.any? { |subscription| subscription.user == current_user } %>
+        <%= link_to "Access the chatroom", chatroom_path(@project.chatroom), class:"btn button-style btn-block rounded-0" %>
+      <% end %>
+    </div>
+  </div>
+
+
+
+  
+
   <div class="row mt-3">
     <p class="card-small-text"><%= @project.description %></p>
   </div>
-  <p class="numbers text-center pt-3"><%= @project.percentage_subscribed * 100 %>%</p>
+  <p class="numbers text-center pt-3"><%= (@project.percentage_subscribed * 100).round(2) %>%</p>
   <p class="card-small-text  text-center">Commited</p>
   <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: <%= @project.percentage_subscribed * 100 %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="progress-bar" role="progressbar" style="width: <%= (@project.percentage_subscribed * 100).round(2) %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
   </div>
   <p></p>
   <% if @project.funded == true %>
@@ -60,8 +112,7 @@
   <div class="col-6 map-section">
     <p class="text-center card-small-text"><%= @project.location %></p>
     <%# MAP %>
-      <%= render 'projects/map-card-index', locales: { project: @project } %>
-    <%# END of MAP %>
+    <%= render 'projects/map-show', locales: { project: @project } %>
   </div>
 <%# Chatromm button%>
 <% if @project.subscriptions.any? { |subscription| subscription.user == current_user } %>
