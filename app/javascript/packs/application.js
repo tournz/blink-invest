@@ -29,9 +29,8 @@ import "bootstrap";
 
 import { initChatroomCable } from "../channels/chatroom_channel";
 import { initMapbox } from '../plugins/init_mapbox';
-
-
 import { initSpinner } from "../loading/spinner"
+import { adjustFinancials } from "../plugins/subscription"
 
 // Chartkick
 // import {Chartkick} from 'chartkick'
