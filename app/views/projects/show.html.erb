@@ -2,7 +2,7 @@
 <%# for meta %>
 <% content_for :meta_title, "#{@project.name} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @project.description %>
-<%# <% content_for :meta_image, cl_image_path(@project.photo.path) %> %>
+<%# <% content_for :meta_image, cl_image_path(@project.photo.path) %>
 <%# meta end %>
 
 <%= cl_image_tag @project.banner_picture.key, crop: :fill, class:"show-banner" %>
@@ -100,5 +100,5 @@
 
     <%# MAP %>
     <%= render 'projects/map-show', locales: { project: @project } %>
-    
+
 </div>
