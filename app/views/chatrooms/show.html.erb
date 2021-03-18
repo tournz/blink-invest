@@ -27,7 +27,7 @@
                 <% end %>
               <% else %>
                 <% if message.poll.responses.any? { |response| response.user == current_user} %>
-                  <p><%= link_to "You have already voted", "" %></p>
+                  <p><%= link_to "You have already voted", "", class:"btn button-style" %></p>
                   <% message.poll.poll_options.each do |poll_option| %>
                     <%= poll_option.content %>:
                     <div class="progress" style="height: 20px;">
