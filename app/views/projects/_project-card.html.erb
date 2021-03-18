@@ -1,39 +1,34 @@
-<div class="card-project">
-  <div class="container">
-
-    <%= cl_image_tag @project.banner_picture.key, height: 120, width: 250, crop: :fill, class:"card-image mt-2" %>
-    <h3 class="text-center card-title-project"><%= @project.name %></h3>
+<div class="card-project ml-4 mr-0">
+    <%= cl_image_tag @project.banner_picture.key, crop: :fill, class:"card-image" %>
+    <h3 class="text-center card-title-project pt-3"><%= @project.name %></h3>
     <p class="text-center index-card-small-text"><%= @project.location %></p>
-    <p class="text-center index-card-small-text"><%= @project.crop %></p>
 
-    <div class="row m-auto pt-0">
-      <div class="fin-stat col-6">
-        <p class="numbers-index-page py-1"><%= (@project.target_net_irr * 100).round(2) %>%</p>
-        <p class="index-card-small-text">Target Net IRR</p>
+    <div class="row m-auto px-3">
+      <div class="fin-stat col-6 text-center">
+        <p class="numbers-index-page "><%= (@project.target_net_irr * 100).round(2) %>%</p>
+        <p class="index-card-small-text mt-1">Target Net IRR</p>
       </div>
-      <div class="fin-stat col-6">
-        <p class="numbers-index-page py-1"><%= (@project.net_cash_yield * 100).round(2) %>%</p>
-        <p class="index-card-small-text">Net Cash Yield</p>
+      <div class="fin-stat col-6 text-center">
+        <p class="numbers-index-page "><%= (@project.net_cash_yield * 100).round(2) %>%</p>
+        <p class="index-card-small-text mt-1">Net Cash Yield</p>
       </div>
     </div>
 
     <div class="row m-auto pt-0">
-      <div class="fin-stat col-6">
-        <p class="numbers-index-page py-1"><%= @project.net_equity_multiple %>x</p>
-        <p class="index-card-small-text">Net Equity Multiple</p>
+      <div class="fin-stat col-6 text-center">
+        <p class="numbers-index-page "><%= @project.net_equity_multiple %>x</p>
+        <p class="index-card-small-text mt-1">Net Equity Multiple</p>
       </div>
-      <div class="fin-stat col-6">
-        <p class="numbers-index-page py-1"><%= @project.target_hold %> Years</p>
-        <p class="index-card-small-text">Target Hold</p>
+      <div class="fin-stat col-6 text-center">
+        <p class="numbers-index-page "><%= @project.target_hold %> Years</p>
+        <p class="index-card-small-text mt-1">Target Hold</p>
       </div>
     </div>
 
-    <p class="text-center index-card-small-text pt-1">Commited <%= (@project.percentage_subscribed * 100).round(2) %>%</p>
-    <div class="progress">
+    <div class="progress" style="height: 8px;">
       <div class="progress-bar" role="progressbar" style="width: <%= @project.percentage_subscribed * 100 %>%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
-    <div class="text-center py-2"><%= link_to "See details", @project, class:"  btn button-style rounded-0" %></div>
+    <%= link_to "See details", @project, class:"btn-block btn button-style rounded-bottom" %>
 
-  </div>
 </div>
