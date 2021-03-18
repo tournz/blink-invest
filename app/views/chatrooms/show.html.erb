@@ -1,9 +1,7 @@
 <div class="container">
   <div class="container card-project p-5" style="filter: opacity(100%)">
     <div class="row justify-content-center">
-      <div class="title mb-20">
-        <h3>Investor room for <%= link_to @chatroom.project.name, project_path(@chatroom.project) %></h3>
-      </div>
+      <h3 style="margin-bottom: 30px;">Investor room for <%= link_to @chatroom.project.name, project_path(@chatroom.project) %></h3>
     </div>
     <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
       <% @chatroom.messages.each do |message| %>
