@@ -17,7 +17,7 @@
                 <% if message.poll.responses.any? { |response| response.user == current_user} %>
                   <p><%= link_to "Edit the poll", poll_path(message.poll), class:"btn button-style" %></p>
                   <% message.poll.poll_options.each do |poll_option| %>
-                    <%= poll_option.content %>: 
+                    <%= poll_option.content %>:
                     <div class="progress" style="height: 20px;">
                       <div class="progress-bar" role="progressbar" style="width: <%= poll_option.responses.count %>%;" aria-valuenow= "<%= poll_option.responses.count %>" aria-valuemin="0" aria-valuemax="2"><%= poll_option.responses.count %></div>
                     </div>
