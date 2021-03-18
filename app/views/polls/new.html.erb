@@ -1,11 +1,13 @@
-<div class="container">
-  <div class="container card-project p-5" style="filter: opacity(100%)">
-    <div class="row justify-content-center mb-50">
-      <h3 style="margin-bottom: 30px;">Create a new poll</h3>
+<div class="chatroom">
+  <div class="container pt-5">
+    <div class="container card-project p-5" style="filter: opacity(100%)">
+      <div class="row justify-content-center mb-50">
+        <h3 style="margin-bottom: 30px;">Create a new poll</h3>
+      </div>
+      <%= simple_form_for [@chatroom, @poll] do |f| %>
+        <%= f.input :title, label: false, placeholder: "Ask ##{@chatroom.project.name} a question" %>
+        <%= f.button :submit, class:"btn button-style" %>
+      <% end %>
     </div>
-    <%= simple_form_for [@chatroom, @poll] do |f| %>
-      <%= f.input :title, label: false, placeholder: "Ask ##{@chatroom.project.name} a question" %>
-      <%= f.button :submit, class:"btn button-style" %>
-    <% end %>
   </div>
-</div>
+</div>  
