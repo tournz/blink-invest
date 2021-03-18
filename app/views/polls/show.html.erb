@@ -1,22 +1,24 @@
-<div class="container">
-  <h1> <%= @poll.title %> </h1>
+<div class="chatroom">
+  <div class="container pt-5">
+    <div class="container card-project p-5" style="filter: opacity(100%)">
+      <h1> <%= @poll.title %> </h1>
 
-  <% unless @poll.responses.any? { |response| response.user == current_user} %>
-    <%= simple_form_for [@poll, @response] do |f| %>
-      <%= f.association :poll_option, label: "Answer", collection: @poll.poll_options, label_method: :content %>
-      <%= f.button :submit, "Send vote" %>
-    <% end %>
-  <% end %>
+      <% unless @poll.responses.any? { |response| response.user == current_user} %>
+        <%= simple_form_for [@poll, @response] do |f| %>
+          <%= f.association :poll_option, label: "", collection: @poll.poll_options, label_method: :content %>
+          <div class="text-right"><%= f.button :submit, "Send vote", class:"button-style" %></div>
+        <% end %>
+      <% end %>
 
-  <% if @poll.user == current_user %>
-    <p>Existing poll options:</p>
-    <% @poll.poll_options.each do |poll_option| %>
-      <p><%= poll_option.content %></p>
-    <% end %>
-    <%= simple_form_for [@poll, @poll_option] do |f| %>
-      <%= f.input :content, label: "Additional poll option:", placeholder: "Poll option" %>
-      <%= f.button :submit, "Add poll option" %>
-    <% end %>
-    <p><%= link_to "Finish creating the poll", chatroom_path(@chatroom) %></p>
-  <% end %>
+      <% if @poll.user == current_user %>
+        <%= simple_form_for [@poll, @poll_option] do |f| %>
+          <%= f.input :content, label: "Additional poll option:", placeholder: "Poll option" %>
+          <div class="text-right">
+            <%= f.button :submit, "Add poll option", class:"button-style" %>
+            <%= link_to "Finish creating the poll", chatroom_path(@chatroom), class:"btn button-style" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

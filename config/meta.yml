@@ -1,5 +1,6 @@
-meta_product_name: "New platform for alternative investments"
-meta_title: "BLINK - Help farmers to make you rich"
-meta_description: "New era investments"
+meta_product_name: "An impact investment platform"
+meta_title: "BLINK - Reliable alternative investments"
+meta_description: "Re-imagining the investments industry"
 meta_image: "cover.png" # should exist in `app/assets/images/`
 twitter_account: "@blink-invest"   # required for Twitter Cards
+

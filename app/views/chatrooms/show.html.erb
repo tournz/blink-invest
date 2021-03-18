@@ -1,40 +1,56 @@
-<div class="container">
-  <h1><%= link_to @chatroom.project.name, project_path(@chatroom.project) %></h1>
-  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-    <% @chatroom.messages.each do |message| %>
-      <div class="message-container" id="message-<%= message.id %>">
-        <i class="author">
-          <span><%= message.user.name %></span>
-          <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-        </i>
-        <p><%= message.content %></p>
-        <% if message.poll_id %>
-          <% if message.poll.user == current_user %>
-            <% if message.poll.responses.any? { |response| response.user == current_user} %>
-              <p><%= link_to "Edit the poll (You have already voted)", poll_path(message.poll) %></p>
-              <% message.poll.poll_options.each do |poll_option| %>
-                <p><%= poll_option.content %>: <div class="progress-bar" role="progressbar" style="width: poll_option.responses.count" aria-valuenow= poll_option.responses.count aria-valuemin="0" aria-valuemax="15"><%= poll_option.responses.count %></div></p>
+<div class="chatroom">
+  <div class="container py-5">
+    <div class="container card-project p-5 " style="filter: opacity(100%)">
+      <div class="row justify-content-center">
+        <h3 class="" >Investor room for <%= link_to @chatroom.project.name, project_path(@chatroom.project), class:"chatroom-header" %></h3>
+      </div>
+      <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+        <% @chatroom.messages.each do |message| %>
+          <div class="message-container mb-4" id="message-<%= message.id %>">
+            <i class="author">
+              <span><%= message.user.name %></span>
+              <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+            </i>
+            <p class="chatrom-content"><%= message.content %></p>
+            <% if message.poll_id %>
+              <% if message.poll.user == current_user %>
+                <% if message.poll.responses.any? { |response| response.user == current_user} %>
+                  <p><%= link_to "Edit the poll", poll_path(message.poll), class:"btn button-style" %></p>
+                  <% message.poll.poll_options.each do |poll_option| %>
+                    <%= poll_option.content %>: 
+                    <div class="progress" style="height: 20px;">
+                      <div class="progress-bar" role="progressbar" style="width: <%= poll_option.responses.count %>%;" aria-valuenow= "<%= poll_option.responses.count %>" aria-valuemin="0" aria-valuemax="2"><%= poll_option.responses.count %></div>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <p><%= link_to "Edit Or Vote", poll_path(message.poll), class:"btn button-style" %></p>
+                <% end %>
+              <% else %>
+                <% if message.poll.responses.any? { |response| response.user == current_user} %>
+                  <p><%= link_to "You have already voted", "" %></p>
+                  <% message.poll.poll_options.each do |poll_option| %>
+                    <p><%= poll_option.content %>: <div class="progress-bar" role="progressbar" style="width: <%poll_option.responses.count%>%;" aria-valuenow= "<%poll_option.responses.count%>" aria-valuemin="0" aria-valuemax="15">  <%= poll_option.responses.count %> poll  </div></p>
+                  <% end %>
+                <% else %>
+                  <p><%= link_to "Participate", poll_path(message.poll) %></p>
+                <% end %>
               <% end %>
-            <% else %>
-              <p><%= link_to "Edit Or Vote", poll_path(message.poll) %></p>
             <% end %>
-          <% else %>
-            <% if message.poll.responses.any? { |response| response.user == current_user} %>
-              <p><%= link_to "You have already voted", "" %></p>
-              <% message.poll.poll_options.each do |poll_option| %>
-                <p><%= poll_option.content %>: <div class="progress-bar" role="progressbar" style="width: poll_option.responses.count" aria-valuenow= poll_option.responses.count aria-valuemin="0" aria-valuemax="15"><%= poll_option.responses.count %></div></p>
-              <% end %>
-            <% else %>
-              <p><%= link_to "Participate", poll_path(message.poll) %></p>
-            <% end %>
-          <% end %>
+          </div>
         <% end %>
       </div>
-    <% end %>
+      <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
+        <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.project.name}" %>
+        <div class="container">
+          <div class="row d-flex justify-content-between">
+            <div class="">
+              <%= f.button :submit, class:"btn button-style no-margin" %>
+              <%= link_to "Create a poll", new_chatroom_poll_path(@chatroom), class:"btn button-style" %>
+            </div>
+            <%= link_to "Back to project", @chatroom.project, class:"btn button-style" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
-    <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.project.name}" %>
-    <%= f.button :submit %>
-  <% end %>
-  <%= link_to "Create a poll", new_chatroom_poll_path(@chatroom)  %>
 </div>
