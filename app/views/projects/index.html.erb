@@ -1,10 +1,10 @@
-    <div class="row my-3 py-3 px-5">
-      <div class="col-7">
-        <%# Project list %>
+    <div class="row my-3 py-3">
+      <div class="col-6">
+        <%# Projects list %>
         <%= render partial: 'projects/list-of-cards', locales: { projects: @projects } %>
       </div>
     
-      <div class="col-5 fixed" >
+      <div class="col-6 fixed" >
         <div class="container mb-3 py-3 bg-white">
           <%= form_tag projects_path, method: :get do %>
             <div class="row">
