@@ -14,10 +14,16 @@ class ProjectsController < ApplicationController
       }
     end
   end
-
+  
   def show
     @project = Project.find(params[:id])
     @users = @project.users.distinct
     @pie_data = ChartkickMethods.pie_chart_method(@users, @project)
+    @markers = 
+      {
+        lat: @project.latitude,
+        lng: @project.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { project: @project })
+      }
   end
 end
