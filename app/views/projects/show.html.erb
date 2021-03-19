@@ -89,12 +89,12 @@
       <% if @project.funded == true %>
           <div class="btn button-style btn-block rounded-0">The project was already subscribed</div>
         <% else %>
-          <%= link_to "Subscribe", new_project_subscription_path(@project), class:"button-style-show-projects" %>
+          <%= link_to "Subscribe", new_project_subscription_path(@project), class:"btn btn-block button-style-show-projects" %>
         <% end %>
     </div>
     <div class="col">
       <% if @project.subscriptions.any? { |subscription| subscription.user == current_user } %>
-        <%= link_to "Access the chatroom", chatroom_path(@project.chatroom), class:"button-style-show-projects" %>
+        <%= link_to "Access the chatroom", chatroom_path(@project.chatroom), class:"btn btn-block button-style-show-projects" %>
       <% end %>
     </div>
   </div>

@@ -29,7 +29,7 @@
 
       <%= simple_form_for [@project, @subscription] do |f| %>
           <%= f.input :amount, :label => "Choose the amount (maximum #{number_to_currency(@max_amount)}):" %>
-          <%= f.button :submit, class:"btn button-style mb-5"%>
+          <%= f.button :submit, class:"btn button-style-show-projects mb-5"%>
       <% end %>
     </div>
   </div>

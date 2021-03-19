@@ -8,7 +8,7 @@
       </div>
     
       <div class="col-6 fixed" >
-        <div class="container mb-3 py-3 bg-white">
+        <div class="container mb-3 py-3 bg-white mx-0 px-0">
           <%= form_tag projects_path, method: :get do %>
             <div class="row">
               <div class="col-8">
@@ -18,7 +18,7 @@
                   placeholder: "Farm name, crop, or location..." %>
               </div>
               <div class="col-4">
-                <%= submit_tag "Search", class: "button-style-search" %>
+                <%= submit_tag "Search", class: "button-style-search h-100" %>
               </div>
               <% if @projects.empty? %>
                 <p class="card-small-text"> no results with "<%= params[:query] %>", maybe try search for "apple"...</p>

@@ -42,17 +42,15 @@
           </div>
         <% end %>
       </div>
-      <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
-        <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.project.name}" %>
-        <div class="container">
-          <div class="row d-flex justify-content-between">
-            <div class="">
-              <%= f.button :submit, class:"btn button-style no-margin" %>
-              <%= link_to "Create a poll", new_chatroom_poll_path(@chatroom), class:"btn button-style" %>
-            </div>
-            <%= link_to "Back to project", @chatroom.project, class:"btn button-style" %>
+      <div class="">
+          <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
+            <%= f.input :content, label: false, placeholder: "Message #{@chatroom.project.name}" %>
+        <div class="row d-flex justify-content-between">
+            <%= f.button :submit, class:"btn button-style w-25" %>
+            <%= link_to "Create a poll", new_chatroom_poll_path(@chatroom), class:"btn button-style w-25" %>
+            <%= link_to "Back to project", @chatroom.project, class:"btn button-style w-25" %>
           </div>
-        </div>
+      </div>
       <% end %>
     </div>
   </div>
