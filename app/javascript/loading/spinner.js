@@ -10,7 +10,7 @@ const initSpinner = () => {
     quiz.addEventListener("submit", (event) => {
     event.preventDefault()
     quiz.classList.toggle('d-none')
-    document.querySelector(".spinner-grow").classList.toggle('d-none')
+    document.querySelector(".loading").classList.toggle('d-none')
     setTimeout(() => {
       quiz.submit()
     },1000)
