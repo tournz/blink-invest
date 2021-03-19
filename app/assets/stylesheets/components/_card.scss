@@ -61,10 +61,14 @@ $borders: 1px solid rgba(218, 218, 218, 0.527);
 
   .button-style {
     text-decoration: none;
+  color: white;
+  background-color: #725F92;
+  &:hover {
+    text-decoration: none;
+    background-color: #8a73b3;
     color: white;
-    background-color: #725F92;
-    width: 100%;
     
+  }
   }
 
   .rounded-bottom {
