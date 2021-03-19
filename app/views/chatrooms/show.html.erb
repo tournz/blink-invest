@@ -42,7 +42,7 @@
           </div>
         <% end %>
       </div>
-      <div class="container">
+      <div class="">
           <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
             <%= f.input :content, label: false, placeholder: "Message #{@chatroom.project.name}" %>
         <div class="row d-flex justify-content-between">
