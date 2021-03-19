@@ -87,7 +87,7 @@
   <div class="row">
     <div class="col">
       <% if @project.funded == true %>
-          <div class="btn button-style btn-block rounded-0">The project was already subscribed</div>
+          <div class="btn btn-block bg-info" style="color: white;">The project was already subscribed</div>
         <% else %>
           <%= link_to "Subscribe", new_project_subscription_path(@project), class:"btn btn-block button-style-show-projects" %>
         <% end %>
