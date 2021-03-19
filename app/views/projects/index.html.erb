@@ -1,3 +1,6 @@
+<style type="text/css">
+   body { background: white !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
     <div class="row my-3 py-3">
       <div class="col-6">
         <%# Projects list %>
@@ -15,7 +18,7 @@
                   placeholder: "Farm name, crop, or location..." %>
               </div>
               <div class="col-4">
-                <%= submit_tag "Search", class: "btn button-style btn-block rounded-0" %>
+                <%= submit_tag "Search", class: "button-style-search" %>
               </div>
               <% if @projects.empty? %>
                 <p class="card-small-text"> no results with "<%= params[:query] %>", maybe try search for "apple"...</p>

@@ -1,14 +1,30 @@
-<div class="home-page">
-  <div class="container">
-      <div class="container home-banner">
-      <div class="col-12 col-sm-6 my-auto">
-        <h2 class="home-title-project home-header">Welcome to our page</h2>
-        <p class="header-small-text">Our projects are carefully selected to make you happy and rich</p>
+<style type="text/css">
+   body { background: white !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
+  <section class="lp">
+    <div class="lp__item text">
+      <h>An Ecosystem <br> For Wealth Generation.</h>
+      <p>Diversify your wealth by investing into agricultural projects. Use accurate<br> and reliable data to make sound investments.  We  simplify the process <br>to let you make investment with a couple of clicks. Easy, understandable, and interactive. </p>
+      <%= link_to "Explore opportunities", projects_path, class:"btn  button-style-home btn-block rounded-0 text-left" %>
+      <%= link_to "Investor assessment", new_quiz_path, class:"btn button-style-home btn-block rounded-0 text-left" %>
       </div>
-      <div class="col-12 col-sm-6 my-auto">
-      <%= link_to "Explore opportunities", projects_path, class:"btn button-style btn-block rounded-0 text-center" %>
-       <%= link_to "Investor assessment", new_quiz_path, class:"btn button-style btn-block rounded-0 text-center" %>
-      </div>   
+    
+
+      
+      <div class="lp__item stripe">
+        <div class="stripe__item"></div>
+        <div class="stripe__item"></div>
+        <div class="stripe__item"></div>
+        <div class="stripe__item"></div>
       </div>
-  </div>
-</div>
+
+
+       <div class="fish">
+      <div class="fish__item fish__item-md"></div>
+      <div class="avocado__item avocado__item-lg" ></div>
+
+    </div>
+    </section>
+
+
+ 

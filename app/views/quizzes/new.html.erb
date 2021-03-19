@@ -9,7 +9,10 @@
         <%= f.input :risk, :collection => %w[Low Medium High], label: false %>
         <p> Are you looking to invest for a short or long period of time? </p>
         <%= f.input :horizon, :collection => %w[short-term long-term], label: false %>
-        <a class="btn button-style btn-block" data-next-step="2" >Next Step</a>
+        <a class="btn button-style-quiz" data-next-step="2" >Next Step</a>
+        <div>
+        <img src="https://i.pinimg.com/originals/d4/6f/11/d46f11d7e0c1113326dec42fd029433e.gif" class="processing__item" alt=""> 
+        </div>
       </div>
 
       <div class="d-none" data-step="2">
@@ -17,7 +20,10 @@
         <%= f.input :income_inv_percentage, :collection => %w[<10 10-30 30-50 >50], label: false %>
         <p> How much income do you generate annually? This helps us identify the most effective options for you. </p>
         <%= f.input :annual_income, :collection => %w[<20,000 20-50,000 >50,000], label: false %>
-        <a class="btn button-style btn-block" data-next-step="3" >Next Step</a>
+        <a class="btn button-style-quiz" data-next-step="3" >Next Step</a>
+        <div>
+        <img src="https://i.pinimg.com/originals/d4/6f/11/d46f11d7e0c1113326dec42fd029433e.gif" class="processing__item" alt=""> 
+        </div>
       </div>
 
       <div class="d-none" data-step="3">
@@ -26,7 +32,10 @@
         <p> Please tell us your age </p>
         <%= f.input :age, label: false %>
           <div class="form-group">
-        <%= f.submit "See options", class: "btn button-style btn-block"  %>
+        <%= f.submit "See options", class: "btn button-style-quiz"  %>
+        <div>
+        <img src="https://i.pinimg.com/originals/d4/6f/11/d46f11d7e0c1113326dec42fd029433e.gif" class="processing__item" alt=""> 
+        </div>
       </div>
     <% end %>
   </div>

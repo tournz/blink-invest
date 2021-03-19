@@ -1,4 +1,6 @@
-
+<style type="text/css">
+   body { background: white !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
 <%# for meta %>
 <% content_for :meta_title, "#{@project.name} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @project.description %>
@@ -87,12 +89,12 @@
       <% if @project.funded == true %>
           <div class="btn button-style btn-block rounded-0">The project was already subscribed</div>
         <% else %>
-          <%= link_to "Subscribe", new_project_subscription_path(@project), class:"btn button-style btn-block rounded-0" %>
+          <%= link_to "Subscribe", new_project_subscription_path(@project), class:"button-style-show-projects" %>
         <% end %>
     </div>
     <div class="col">
       <% if @project.subscriptions.any? { |subscription| subscription.user == current_user } %>
-        <%= link_to "Access the chatroom", chatroom_path(@project.chatroom), class:"btn button-style btn-block rounded-0" %>
+        <%= link_to "Access the chatroom", chatroom_path(@project.chatroom), class:"button-style-show-projects" %>
       <% end %>
     </div>
   </div>
