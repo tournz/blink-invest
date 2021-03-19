@@ -18,7 +18,7 @@
                   placeholder: "Farm name, crop, or location..." %>
               </div>
               <div class="col-4">
-                <%= submit_tag "Search", class: "button-style-search h-100" %>
+                <%= submit_tag "Search", class: "button-style-search h-100 w-100" %>
               </div>
               <% if @projects.empty? %>
                 <p class="card-small-text"> no results with "<%= params[:query] %>", maybe try search for "apple"...</p>

@@ -1,30 +1,28 @@
 <style type="text/css">
    body { background: white !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
 </style>
-  <section class="lp">
-    <div class="lp__item text-home-page">
-      <h>An Ecosystem <br> For Wealth Generation.</h>
-      <p>Diversify your wealth by investing into agricultural projects. Use accurate<br> and reliable data to make sound investments.  We  simplify the process <br>to let you make investment with a couple of clicks. Easy, understandable, and interactive. </p>
-      <%= link_to "Explore opportunities", projects_path, class:"btn  button-style-home btn-block rounded-0 " %>
-      <%= link_to "Investor assessment", new_quiz_path, class:"btn button-style-home btn-block rounded-0 " %>
-      </div>
-    
-
-      
-      <div class="lp__item stripe">
-        <div class="stripe__item"></div>
-        <div class="stripe__item"></div>
-        <div class="stripe__item"></div>
-        <div class="stripe__item"></div>
-      </div>
-
-
-       <div class="fish">
-      <div class="fish__item fish__item-md"></div>
-      <%# <div class="avocado__item avocado__item-lg" ></div> %>
-
+<section class="lp">
+  <div class="lp__item text-home-page">
+    <h>An Ecosystem <br> For Wealth Generation.</h>
+    <p>Diversify your wealth by investing into agricultural projects. Use accurate<br> and reliable data to make sound investments.  We  simplify the process <br>to let you make investment with a couple of clicks. Easy, understandable, and interactive. </p>
+    <div class="d-flex inline">
+      <%= link_to "Explore opportunities", projects_path, class:"btn button-style-home rounded-0 w-100 text-center h-100 mr-2" %>
+      <%= link_to "Investor assessment", new_quiz_path, class:"btn button-style-home rounded-0 w-100 text-center h-100" %>
     </div>
-    </section>
+  </div>
+  
+  <div class="lp__item stripe">
+    <div class="stripe__item"></div>
+    <div class="stripe__item"></div>
+    <div class="stripe__item"></div>
+    <div class="stripe__item"></div>
+  </div>
+
+  <div class="fish">
+    <div class="fish__item fish__item-md"></div>
+    <%# <div class="avocado__item avocado__item-lg" ></div> %>
+  </div>
+</section>
 
 
  

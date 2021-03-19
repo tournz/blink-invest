@@ -149,8 +149,12 @@ $mar-lft: 40px;
   text-decoration: none;
   color: white;
   background-color: #725F92;
-  width: 200px;
-  margin-left: 11px;
-  
-}
+  &:hover {
+    text-decoration: none;
+    background-color: #8a73b3;
+    color: white;
+    
+  }
+
+}  
 
