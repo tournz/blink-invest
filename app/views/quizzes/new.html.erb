@@ -1,5 +1,8 @@
+<style type="text/css">
+   body { background: white !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+</style>
 <div class="container">
-  <div class="form-login">
+  <div class="form-quiz">
   <div class="row justify-content-left">
   <div class="col-12 col-sm-6 my-auto" id="risk_assessment_wizard">
     <%= simple_form_for @quiz do |f| %>
@@ -41,9 +44,14 @@
   </div>
  </div>
  
-  <div class="spinner-grow d-none"role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
+<div class="content">
+   <div class="loading d-none"role=status>
+<p>assessing</p>
+      <span></span>
+   </div>
 </div>
+
+
+
 
 
