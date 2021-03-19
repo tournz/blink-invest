@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
         lat: @project.latitude,
         lng: @project.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { project: @project })
+        
       }
   end
 end
