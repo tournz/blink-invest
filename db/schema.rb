@@ -1,14 +1,22 @@
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
+#
+# It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2021_03_15_134735) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -28,22 +36,22 @@ ActiveRecord::Schema.define(version: 2021_03_15_134735) do
   create_table "cash_yields", force: :cascade do |t|
     t.date "date"
     t.float "value"
-    t.bigint "project_id", null: false
+    t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_cash_yields_on_project_id"
   end
 
   create_table "chatrooms", force: :cascade do |t|
-    t.bigint "project_id", null: false
+    t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_chatrooms_on_project_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "project_id", null: false
+    t.integer "user_id", null: false
+    t.integer "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_favorites_on_project_id"
@@ -53,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_134735) do
   create_table "investment_highlights", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.bigint "project_id"
+    t.integer "project_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_investment_highlights_on_project_id"
@@ -61,11 +69,11 @@ ActiveRecord::Schema.define(version: 2021_03_15_134735) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "chatroom_id"
-    t.bigint "poll_id"
+    t.integer "chatroom_id"
+    t.integer "poll_id"
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["poll_id"], name: "index_messages_on_poll_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
@@ -73,7 +81,7 @@ ActiveRecord::Schema.define(version: 2021_03_15_134735) do
 
   create_table "poll_options", force: :cascade do |t|
     t.text "content"
-    t.bigint "poll_id", null: false
+    t.integer "poll_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["poll_id"], name: "index_poll_options_on_poll_id"
@@ -81,10 +89,10 @@ ActiveRecord::Schema.define(version: 2021_03_15_134735) do
 
   create_table "polls", force: :cascade do |t|
     t.text "title"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "chatroom_id", null: false
+    t.integer "chatroom_id", null: false
     t.index ["chatroom_id"], name: "index_polls_on_chatroom_id"
     t.index ["user_id"], name: "index_polls_on_user_id"
   end
@@ -120,8 +128,8 @@ ActiveRecord::Schema.define(version: 2021_03_15_134735) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "poll_option_id", null: false
+    t.integer "user_id", null: false
+    t.integer "poll_option_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["poll_option_id"], name: "index_responses_on_poll_option_id"
@@ -130,8 +138,8 @@ ActiveRecord::Schema.define(version: 2021_03_15_134735) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.float "amount"
-    t.bigint "project_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "project_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_subscriptions_on_project_id"
